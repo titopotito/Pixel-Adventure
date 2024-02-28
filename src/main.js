@@ -1,13 +1,21 @@
 import Phaser from "phaser";
-import GameScene from "./scenes/GameScene.js";
+import Preloader from "./scenes/Preloader.js";
+import Game from "./scenes/Game.js";
 
 const config = {
-    width: 720,
-    height: 480,
     type: Phaser.AUTO,
+    width: 360,
+    height: 240,
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: { y: 0 },
+        },
+    },
+    scene: [Preloader, Game],
+    scale: {
+        zoom: 2,
+    },
 };
 
-const game = new Phaser.Game(config);
-
-game.scene.add("gamescene", GameScene);
-game.scene.start("gamescene");
+export default new Phaser.Game(config);

@@ -1,5 +1,5 @@
 GAME CONCEPT
-* single player game where the player can control an adventurer to explore the world, open treasure chest, defeat enemies and bosses
+* single player game where the player can control an adventurer to explore the world, open treasure chests, level-up, defeat enemies and bosses
 
 TARGET PLATFORMS:
 * Browser Game
@@ -41,7 +41,7 @@ Map:
     * 4 maps
     * New maps will be unlocked after defeating bosses.
     * Unexplored area of the map will be black. When explored, the area will light up and become visible.
-    * 100x100 tiles / 16x16 pixels each tile
+    * 200x200 tiles / 16x16 pixels each tile
     
 Character:
     * Has exp, level, stats (attack, hp), basic attack, 2 skills.
@@ -72,3 +72,9 @@ Elements:
     * Plant - attacks heal
     * Lightning - instant big damage
     * Earth - create shield
+
+Resources:
+    * Asset Pack - title: Ninja Adventure - Asset Pack
+            - author name: pixel-boy
+            - source: https://pixel-boy.itch.io/ninja-adventure-asset-pack
+            - license: Creative Commons Zero v.10 Universal
