@@ -1,0 +1,74 @@
+GAME CONCEPT
+* single player game where the player can control an adventurer to explore the world, open treasure chest, defeat enemies and bosses
+
+TARGET PLATFORMS:
+* Browser Game
+
+UI / PLAYER CONTROLS
+Movement:
+    * W - character move up
+    * S - character move down
+    * A - characteer move left
+    * D - character move right
+Attack:
+    * J - cast basic attack
+    * K - cast skill 1
+    * L - cast skill 2
+Interaction:
+    * F - interact with object at the front of character
+
+Menu:
+    * Esc - Pause Game and then Open Menu / Close Menu then Unpause Game
+
+Menu List:
+    * Resume
+    * Character - open character details
+    * Save Progress?
+    * Quit - go back to title scene
+
+Character Details:
+    * List level, experience, attack, hp
+    * List equipped skills
+    * List un-equipped skills
+ 
+
+GAME MECHANICS
+
+Win condition:
+    * Defeating every boss in the game.
+
+Map:
+    * 4 maps
+    * New maps will be unlocked after defeating bosses.
+    * Unexplored area of the map will be black. When explored, the area will light up and become visible.
+    * 100x100 tiles / 16x16 pixels each tile
+    
+Character:
+    * Has exp, level, stats (attack, hp), basic attack, 2 skills.
+    * To level Up Character:
+        - defeat enemies
+        - open treasure chests
+    * Skills:
+        - have element types
+        - character can equip only 2 skills
+        - skills can be levelled-up using gold
+        - skill 1 low cooldown / skill 2 high cooldown
+    * When character level up:
+        - increase stats (attack, hp) to help defeating boss
+        - increase max-skill level
+        - increase visibility to help explore the map 
+
+Items:
+    * Potions:
+        - potions can increase attack or recover hp
+        - can be obtained by purchasing from shop or opening treasure chests
+    * Gold:
+        - used to level-up skills or purchase potions
+        - can be obtained by defeating enemies or opening treasure chests
+
+Elements:
+    * Fire - damage over time
+    * Ice - freeze enemy
+    * Plant - attacks heal
+    * Lightning - instant big damage
+    * Earth - create shield
