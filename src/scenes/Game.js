@@ -8,14 +8,27 @@ export default class Game extends Phaser.Scene {
     preload() {}
 
     create() {
-        this.map = this.make.tilemap({ key: "TilesetFloor" });
-        const tileset = this.map.addTilesetImage("TilesetFloor", "tileset-floor");
-        this.map.createLayer("ground", tileset);
-        this.character = this.physics.add.sprite(360 / 2, 240 / 2, "character", "idle-down-1.png");
-
+        this.character = this.physics.add.sprite(15 * 16, 14 * 16, "character", "idle-down-1.png");
+        this.character.setDepth(1);
         this.createAnimation("character", "idle", 1);
         this.createAnimation("character", "walk", 4);
-        this.character.anims.play("character-walk-left");
+        this.cameras.main.startFollow(this.character, true);
+
+        this.tilesetMap = this.make.tilemap({ key: "tileset" });
+        const tilesetImageMap = this.tilesetMap.addTilesetImage("tileset", "tileset");
+
+        const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
+        LAYERS.map((layer) => {
+            let item = this.tilesetMap.createLayer(layer, tilesetImageMap);
+            item.setCollisionByProperty({ collision: true });
+            this.physics.add.collider(this.character, item);
+            let debugGraphics = this.add.graphics().setAlpha(0.7);
+            item.renderDebug(debugGraphics, {
+                tileColor: null,
+                collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+                faceColor: new Phaser.Display.Color(48, 39, 37, 255),
+            });
+        });
 
         this.currentDirection = "down";
         this.keyEventMap = {};
