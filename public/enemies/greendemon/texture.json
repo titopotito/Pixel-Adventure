@@ -5,7 +5,7 @@
             "frame": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -13,11 +13,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -30,7 +30,7 @@
             "frame": {
                 "x": 0,
                 "y": 16,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -38,11 +38,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -55,7 +55,7 @@
             "frame": {
                 "x": 0,
                 "y": 32,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -63,11 +63,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -80,7 +80,7 @@
             "frame": {
                 "x": 0,
                 "y": 48,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -88,11 +88,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -103,9 +103,9 @@
         {
             "filename": "walk-up-1.png",
             "frame": {
-                "x": 15.5,
+                "x": 15.875,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -113,11 +113,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -128,9 +128,9 @@
         {
             "filename": "walk-up-2.png",
             "frame": {
-                "x": 15.5,
+                "x": 15.875,
                 "y": 16,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -138,11 +138,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -153,9 +153,9 @@
         {
             "filename": "walk-up-3.png",
             "frame": {
-                "x": 15.5,
+                "x": 15.875,
                 "y": 32,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -163,11 +163,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -178,9 +178,9 @@
         {
             "filename": "walk-up-4.png",
             "frame": {
-                "x": 15.5,
+                "x": 15.875,
                 "y": 48,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -188,11 +188,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -203,9 +203,9 @@
         {
             "filename": "walk-left-1.png",
             "frame": {
-                "x": 32,
+                "x": 31.75,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -213,11 +213,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -228,9 +228,9 @@
         {
             "filename": "walk-left-2.png",
             "frame": {
-                "x": 32,
+                "x": 31.75,
                 "y": 16,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -238,11 +238,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -253,9 +253,9 @@
         {
             "filename": "walk-left-3.png",
             "frame": {
-                "x": 32,
+                "x": 31.75,
                 "y": 32,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -263,11 +263,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -278,9 +278,9 @@
         {
             "filename": "walk-left-4.png",
             "frame": {
-                "x": 32,
+                "x": 31.75,
                 "y": 48,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -288,11 +288,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -303,9 +303,9 @@
         {
             "filename": "walk-right-1.png",
             "frame": {
-                "x": 46.875,
+                "x": 47.625,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -313,11 +313,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -328,9 +328,9 @@
         {
             "filename": "walk-right-2.png",
             "frame": {
-                "x": 46.875,
+                "x": 47.625,
                 "y": 16,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -338,11 +338,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -353,9 +353,9 @@
         {
             "filename": "walk-right-3.png",
             "frame": {
-                "x": 46.875,
+                "x": 47.625,
                 "y": 32,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -363,11 +363,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -378,9 +378,9 @@
         {
             "filename": "walk-right-4.png",
             "frame": {
-                "x": 46.875,
+                "x": 47.625,
                 "y": 48,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -388,36 +388,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
-                "h": 16
-            },
-            "pivot": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "Jump.png",
-            "frame": {
-                "x": 62,
-                "y": 0,
-                "w": 63,
-                "h": 16
-            },
-            "rotated": false,
-            "trimmed": true,
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 63,
-                "h": 16
-            },
-            "sourceSize": {
-                "w": 64,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -428,17 +403,17 @@
         {
             "filename": "Attack.png",
             "frame": {
-                "x": 62,
-                "y": 16,
-                "w": 62,
+                "x": 63,
+                "y": 0,
+                "w": 64,
                 "h": 16
             },
             "rotated": false,
-            "trimmed": true,
+            "trimmed": false,
             "spriteSourceSize": {
-                "x": 1,
+                "x": 0,
                 "y": 0,
-                "w": 62,
+                "w": 64,
                 "h": 16
             },
             "sourceSize": {
@@ -453,9 +428,9 @@
         {
             "filename": "idle-down-1.png",
             "frame": {
-                "x": 62,
-                "y": 32,
-                "w": 16,
+                "x": 63,
+                "y": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -463,11 +438,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -478,9 +453,9 @@
         {
             "filename": "idle-up-1.png",
             "frame": {
-                "x": 77.5,
-                "y": 32,
-                "w": 16,
+                "x": 78.875,
+                "y": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -488,11 +463,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -503,9 +478,9 @@
         {
             "filename": "idle-left-1.png",
             "frame": {
-                "x": 93.5,
-                "y": 32,
-                "w": 16,
+                "x": 94.75,
+                "y": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -513,11 +488,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -528,9 +503,9 @@
         {
             "filename": "idle-right-1.png",
             "frame": {
-                "x": 109,
-                "y": 32,
-                "w": 16,
+                "x": 110.625,
+                "y": 16,
+                "w": 15.875,
                 "h": 16
             },
             "rotated": false,
@@ -538,11 +513,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 15.875,
                 "h": 16
             },
             "pivot": {
@@ -551,23 +526,23 @@
             }
         },
         {
-            "filename": "Dead.png",
+            "filename": "Jump.png",
             "frame": {
-                "x": 62,
-                "y": 48,
-                "w": 16,
-                "h": 14
+                "x": 63,
+                "y": 32,
+                "w": 63,
+                "h": 16
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
                 "x": 0,
-                "y": 2,
-                "w": 16,
-                "h": 14
+                "y": 0,
+                "w": 63,
+                "h": 16
             },
             "sourceSize": {
-                "w": 16,
+                "w": 64,
                 "h": 16
             },
             "pivot": {
@@ -578,32 +553,7 @@
         {
             "filename": "Item.png",
             "frame": {
-                "x": 78,
-                "y": 48,
-                "w": 16,
-                "h": 16
-            },
-            "rotated": false,
-            "trimmed": false,
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 16,
-                "h": 16
-            },
-            "sourceSize": {
-                "w": 16,
-                "h": 16
-            },
-            "pivot": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "Special1.png",
-            "frame": {
-                "x": 94,
+                "x": 63,
                 "y": 48,
                 "w": 16,
                 "h": 16
@@ -628,18 +578,68 @@
         {
             "filename": "Special2.png",
             "frame": {
-                "x": 110,
+                "x": 79,
                 "y": 48,
-                "w": 15,
+                "w": 16,
                 "h": 16
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "Special1.png",
+            "frame": {
+                "x": 95,
+                "y": 48,
+                "w": 16,
+                "h": 14
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 0,
-                "w": 15,
+                "x": 0,
+                "y": 2,
+                "w": 16,
+                "h": 14
+            },
+            "sourceSize": {
+                "w": 16,
                 "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "Dead.png",
+            "frame": {
+                "x": 111,
+                "y": 48,
+                "w": 16,
+                "h": 13
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 3,
+                "w": 16,
+                "h": 13
             },
             "sourceSize": {
                 "w": 16,
@@ -657,7 +657,7 @@
         "image": "texture.png",
         "format": "RGBA8888",
         "size": {
-            "w": 125,
+            "w": 127,
             "h": 64
         },
         "scale": 1
