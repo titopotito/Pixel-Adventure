@@ -16,6 +16,12 @@ export default class Game extends Phaser.Scene {
             spriteName: "adventurer",
         });
 
+        this.reddemon = this.physics.add.sprite(17 * 16, 14 * 16, "spirit", "idle-left-1.png");
+        this.reddemon.setDepth(1);
+        this.createAnimation("idle", 1);
+        this.createAnimation("walk", 4);
+        this.reddemon.anims.play("spirit-walk-up");
+
         // ADDING MAP
         const tilesetMap = this.make.tilemap({ key: "tileset" });
         const tilesetImageMap = tilesetMap.addTilesetImage("tileset", "tileset");
@@ -29,6 +35,22 @@ export default class Game extends Phaser.Scene {
 
     update() {
         this.adventurer.playAnimation();
+    }
+
+    createAnimation(action, numberOfFrames = 1, suffix = ".png") {
+        for (let direction of ["up", "down", "left", "right"]) {
+            this.reddemon.anims.create({
+                key: `spirit-${action}-${direction}`,
+                frames: this.reddemon.anims.generateFrameNames("spirit", {
+                    start: 1,
+                    end: numberOfFrames,
+                    prefix: `${action}-${direction}-`,
+                    suffix: suffix,
+                }),
+                repeat: -1,
+                frameRate: 5,
+            });
+        }
     }
 }
 
