@@ -1,5 +1,7 @@
-export default class GameSprite {
+import Phaser from "phaser";
+export default class GameSprite extends Phaser.Physics.Arcade.Sprite {
     constructor(config) {
+        super(config.scene, config.positionX, config.positionY, config.spriteName);
         this.sprite = config.scene.physics.add.sprite(
             config.positionX,
             config.positionY,
@@ -8,6 +10,8 @@ export default class GameSprite {
         );
         this.id = config.id;
         this.sprite.setDepth(1);
+        this.sprite.body.collideWorldBounds = true;
+        this.sprite.body.pushable = false;
     }
 
     createAnims(action, numberOfFrames = 1, repeat = 1, suffix = ".png") {

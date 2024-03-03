@@ -2855,8 +2855,26 @@
                  "width":0,
                  "x":1580,
                  "y":388
+                }, 
+                {
+                 "ellipse":true,
+                 "height":0,
+                 "id":413,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1016,
+                 "y":-208
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"collision",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -5270,7 +5288,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":413,
+ "nextobjectid":414,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

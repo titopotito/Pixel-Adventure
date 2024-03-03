@@ -2,7 +2,6 @@ import GameSprite from "./game-sprite";
 export default class Treasure extends GameSprite {
     constructor(config) {
         super(config);
-        this.id = config.id;
     }
 
     open() {

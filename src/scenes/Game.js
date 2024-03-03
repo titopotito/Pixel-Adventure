@@ -11,25 +11,25 @@ export default class Game extends Phaser.Scene {
     preload() {}
 
     create() {
+        const TILE_SIZE = { w: 16, h: 16 };
+        const CHARACTER_STARTING_POSITION = { x: 15, y: 14 };
+        this.physics.world.bounds.width = this.sys.config.width * TILE_SIZE.w;
+        this.physics.world.bounds.height = this.sys.config.height * TILE_SIZE.h;
+
+        const TILESET_MAP = this.make.tilemap({ key: "tileset" });
+        const TILESET_MAP_IMAGE = TILESET_MAP.addTilesetImage("tileset", "tileset");
+        const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
+
         this.adventurer = new Adventurer({
             scene: this,
-            positionX: 15 * 16,
-            positionY: 14 * 16,
+            positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
+            positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
             spriteInitialFrame: "idle-down-1.png",
             id: 1,
         });
 
-        const tilesetMap = this.make.tilemap({ key: "tileset" });
-        const tilesetImageMap = tilesetMap.addTilesetImage("tileset", "tileset");
-        const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
-        LAYERS.map((layer) => {
-            let item = tilesetMap.createLayer(layer, tilesetImageMap);
-            item.setCollisionByProperty({ collision: true });
-            this.physics.add.collider(this.adventurer.sprite, item);
-        });
-
-        const greenDemonLayer = tilesetMap.getObjectLayer("green-demon");
+        const greenDemonLayer = TILESET_MAP.getObjectLayer("green-demon");
         greenDemonLayer.objects.forEach((greenDemonObj) => {
             let config = {
                 scene: this,
@@ -40,9 +40,10 @@ export default class Game extends Phaser.Scene {
                 id: greenDemonObj.id,
             };
             let greenDemon = new Enemy(config);
+            this.physics.add.collider(this.adventurer.sprite, greenDemon.sprite);
         });
 
-        const treasureChestLayer = tilesetMap.getObjectLayer("treasure-chest");
+        const treasureChestLayer = TILESET_MAP.getObjectLayer("treasure-chest");
         treasureChestLayer.objects.forEach((treasureChestObj) => {
             let config = {
                 scene: this,
@@ -53,6 +54,13 @@ export default class Game extends Phaser.Scene {
                 id: treasureChestObj.id,
             };
             let treasureChest = new Treasure(config);
+            this.physics.add.collider(this.adventurer.sprite, treasureChest.sprite);
+        });
+
+        LAYERS.forEach((layer) => {
+            let item = TILESET_MAP.createLayer(layer, TILESET_MAP_IMAGE);
+            item.setCollisionByProperty({ collision: true });
+            this.physics.add.collider(this.adventurer.sprite, item);
         });
     }
 
