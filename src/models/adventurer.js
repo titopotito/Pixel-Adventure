@@ -1,11 +1,8 @@
-import GameSprite from "./game-sprite";
-export default class Adventurer extends GameSprite {
+import CharacterSprite from "./character-sprite.js";
+export default class Adventurer extends CharacterSprite {
     constructor(config) {
         super(config);
         this.sprite.scene.cameras.main.startFollow(this.sprite, true);
-        this.createAnimation("idle", 1);
-        this.createAnimation("walk", 4);
-        this.createAnimation("attack", 1);
     }
 
     get keyboardEventMap() {
@@ -43,8 +40,3 @@ export default class Adventurer extends GameSprite {
         }
     }
 }
-
-// this.greendemon = this.physics.add.sprite(17 * 16, 14 * 16, "green-demon", "idle-left-1.png");
-// this.greendemon.setDepth(1);
-// this.updateAnimation("green-demon", "walk", 4);
-// this.greendemon.anims.play("green-demon-walk-right");

@@ -2865,7 +2865,7 @@
         {
          "draworder":"topdown",
          "id":9,
-         "name":"treasure",
+         "name":"treasure-chest",
          "objects":[
                 {
                  "height":0,

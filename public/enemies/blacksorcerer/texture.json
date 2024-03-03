@@ -401,11 +401,11 @@
             }
         },
         {
-            "filename": "Attack.png",
+            "filename": "attack-down-1.png",
             "frame": {
                 "x": 63,
                 "y": 0,
-                "w": 64,
+                "w": 16,
                 "h": 16
             },
             "rotated": false,
@@ -413,11 +413,86 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 64,
+                "w": 16,
                 "h": 16
             },
             "sourceSize": {
-                "w": 64,
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "attack-up-1.png",
+            "frame": {
+                "x": 79,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "attack-left-1.png",
+            "frame": {
+                "x": 95,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "attack-right-1.png",
+            "frame": {
+                "x": 111,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 16
+            },
+            "sourceSize": {
+                "w": 16,
                 "h": 16
             },
             "pivot": {
@@ -626,7 +701,7 @@
             }
         },
         {
-            "filename": "Dead.png",
+            "filename": "die-1.png",
             "frame": {
                 "x": 111,
                 "y": 48,
