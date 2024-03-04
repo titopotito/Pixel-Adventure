@@ -2,8 +2,8 @@ import GameSprite from "./game-sprite.js";
 export default class CharacterSprite extends GameSprite {
     constructor(config, stats = { level: 1, atk: 10, maxHP: 100 }) {
         super(config);
-        this.sprite.speed = 100;
-        this.sprite.currentDirection = "down";
+        this.speed = 100;
+        this.currentDirection = "down";
         this.level = stats.level;
         this.atk = stats.atk;
         this.maxHP = stats.maxHP;
@@ -30,28 +30,28 @@ export default class CharacterSprite extends GameSprite {
     }
 
     idle() {
-        this.sprite.setVelocity(0, 0);
-        this.sprite.anims.play(`${this.id}-${this.sprite.texture.key}-idle-${this.sprite.currentDirection}`, true);
+        this.setVelocity(0, 0);
+        this.anims.play(`${this.id}-${this.texture.key}-idle-${this.currentDirection}`, true);
     }
 
     walk(direction) {
         const velocityMap = {
-            up: { x: 0, y: -this.sprite.speed },
-            down: { x: 0, y: this.sprite.speed },
-            left: { x: -this.sprite.speed, y: 0 },
-            right: { x: this.sprite.speed, y: 0 },
+            up: { x: 0, y: -this.speed },
+            down: { x: 0, y: this.speed },
+            left: { x: -this.speed, y: 0 },
+            right: { x: this.speed, y: 0 },
         };
-        this.sprite.setVelocity(velocityMap[direction].x, velocityMap[direction].y);
-        this.sprite.anims.play(`${this.id}-${this.sprite.texture.key}-walk-${direction}`, true);
-        this.sprite.currentDirection = direction;
+        this.setVelocity(velocityMap[direction].x, velocityMap[direction].y);
+        this.anims.play(`${this.id}-${this.texture.key}-walk-${direction}`, true);
+        this.currentDirection = direction;
     }
 
     attack() {
-        this.sprite.anims.play(`${this.id}-${this.sprite.texture.key}-attack-${this.sprite.currentDirection}`);
+        this.anims.play(`${this.id}-${this.texture.key}-attack-${this.currentDirection}`);
     }
 
     die() {
-        this.sprite.anims.play(`${this.id}-${this.sprite.texture.key}-die`);
+        this.anims.play(`${this.id}-${this.texture.key}-die`);
     }
 
     receiveDamage(damage) {

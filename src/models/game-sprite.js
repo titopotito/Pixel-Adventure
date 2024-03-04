@@ -2,22 +2,18 @@ import Phaser from "phaser";
 export default class GameSprite extends Phaser.Physics.Arcade.Sprite {
     constructor(config) {
         super(config.scene, config.positionX, config.positionY, config.spriteName);
-        this.sprite = config.scene.physics.add.sprite(
-            config.positionX,
-            config.positionY,
-            config.spriteName,
-            config.spriteInitialFrame
-        );
+        config.scene.physics.add.existing(this);
+        this.addToDisplayList();
+        this.addToUpdateList();
         this.id = config.id;
-        this.sprite.setDepth(1);
-        this.sprite.body.collideWorldBounds = true;
-        this.sprite.body.pushable = false;
+        this.setDepth(1);
+        this.body.collideWorldBounds = true;
     }
 
     createAnims(action, numberOfFrames = 1, repeat = 1, suffix = ".png") {
-        this.sprite.scene.anims.create({
-            key: `${this.id}-${this.sprite.texture.key}-${action}`,
-            frames: this.sprite.anims.generateFrameNames(`${this.sprite.texture.key}`, {
+        this.scene.anims.create({
+            key: `${this.id}-${this.texture.key}-${action}`,
+            frames: this.anims.generateFrameNames(`${this.texture.key}`, {
                 start: 1,
                 end: numberOfFrames,
                 prefix: `${action}-`,
@@ -30,9 +26,9 @@ export default class GameSprite extends Phaser.Physics.Arcade.Sprite {
 
     createAnimsWithDirection(action, numberOfFrames = 1, repeat = -1, suffix = ".png") {
         for (let direction of ["up", "down", "left", "right"]) {
-            this.sprite.scene.anims.create({
-                key: `${this.id}-${this.sprite.texture.key}-${action}-${direction}`,
-                frames: this.sprite.anims.generateFrameNames(`${this.sprite.texture.key}`, {
+            this.scene.anims.create({
+                key: `${this.id}-${this.texture.key}-${action}-${direction}`,
+                frames: this.anims.generateFrameNames(`${this.texture.key}`, {
                     start: 1,
                     end: numberOfFrames,
                     prefix: `${action}-${direction}-`,

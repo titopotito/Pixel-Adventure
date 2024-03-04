@@ -11,24 +11,24 @@ export default class Game extends Phaser.Scene {
     preload() {}
 
     create() {
-        const TILE_SIZE = { w: 16, h: 16 };
         const CHARACTER_STARTING_POSITION = { x: 15, y: 14 };
-        this.physics.world.bounds.width = this.sys.config.width * TILE_SIZE.w;
-        this.physics.world.bounds.height = this.sys.config.height * TILE_SIZE.h;
-
+        const TILE_SIZE = { w: 16, h: 16 };
         const TILESET_MAP = this.make.tilemap({ key: "tileset" });
         const TILESET_MAP_IMAGE = TILESET_MAP.addTilesetImage("tileset", "tileset");
         const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
+
+        this.physics.world.bounds.width = this.sys.config.width * TILE_SIZE.w;
+        this.physics.world.bounds.height = this.sys.config.height * TILE_SIZE.h;
 
         this.adventurer = new Adventurer({
             scene: this,
             positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
             positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
-            spriteInitialFrame: "idle-down-1.png",
             id: 1,
         });
 
+        this.greenDemonsGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
         const greenDemonLayer = TILESET_MAP.getObjectLayer("green-demon");
         greenDemonLayer.objects.forEach((greenDemonObj) => {
             let config = {
@@ -36,13 +36,14 @@ export default class Game extends Phaser.Scene {
                 positionX: greenDemonObj.x,
                 positionY: greenDemonObj.y,
                 spriteName: "green-demon",
-                spriteInitialFrame: "idle-down-1.png",
                 id: greenDemonObj.id,
             };
-            let greenDemon = new Enemy(config);
-            this.physics.add.collider(this.adventurer.sprite, greenDemon.sprite);
+            this.greenDemonsGroup.add(new Enemy(config));
         });
+        this.greenDemonsGroup.runChildUpdate = true;
+        this.greenDemonsGroup.preUpdate(1, 1);
 
+        this.treasureChestGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
         const treasureChestLayer = TILESET_MAP.getObjectLayer("treasure-chest");
         treasureChestLayer.objects.forEach((treasureChestObj) => {
             let config = {
@@ -50,17 +51,20 @@ export default class Game extends Phaser.Scene {
                 positionX: treasureChestObj.x,
                 positionY: treasureChestObj.y,
                 spriteName: "treasure-chest",
-                spriteInitialFrame: "close-1.png",
                 id: treasureChestObj.id,
             };
-            let treasureChest = new Treasure(config);
-            this.physics.add.collider(this.adventurer.sprite, treasureChest.sprite);
+            this.treasureChestGroup.add(new Treasure(config));
         });
 
-        LAYERS.forEach((layer) => {
-            let item = TILESET_MAP.createLayer(layer, TILESET_MAP_IMAGE);
-            item.setCollisionByProperty({ collision: true });
-            this.physics.add.collider(this.adventurer.sprite, item);
+        this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
+        this.physics.add.collider(this.adventurer, this.treasureChestGroup);
+
+        LAYERS.forEach((item) => {
+            let layer = TILESET_MAP.createLayer(item, TILESET_MAP_IMAGE);
+            layer.setCollisionByProperty({ collision: true });
+            this.physics.add.collider(this.adventurer, layer);
+            this.physics.add.collider(this.greenDemonsGroup, layer);
+            this.physics.add.collider(this.treasureChestGroup, layer);
         });
     }
 

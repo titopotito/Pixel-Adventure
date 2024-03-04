@@ -2,7 +2,7 @@ import CharacterSprite from "./character-sprite.js";
 export default class Adventurer extends CharacterSprite {
     constructor(config) {
         super(config);
-        this.sprite.scene.cameras.main.startFollow(this.sprite, true);
+        this.scene.cameras.main.startFollow(this, true);
     }
 
     get keyboardEventMap() {
@@ -15,10 +15,10 @@ export default class Adventurer extends CharacterSprite {
         };
 
         for (let action in walkingKeyCodes) {
-            keyboardEventMap[action] = this.sprite.scene.input.keyboard.addKey(walkingKeyCodes[action], true, true);
+            keyboardEventMap[action] = this.scene.input.keyboard.addKey(walkingKeyCodes[action], true, true);
         }
 
-        keyboardEventMap["attack"] = this.sprite.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
+        keyboardEventMap["attack"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         return keyboardEventMap;
     }
 
