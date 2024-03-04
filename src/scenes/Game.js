@@ -2,6 +2,9 @@ import Phaser from "phaser";
 import Adventurer from "../models/adventurer.js";
 import Enemy from "../models/enemy.js";
 import Treasure from "../models/treasure.js";
+import { adventurerAnims } from "../anims/adventurer-anims.js";
+import { greenDemonAnims } from "../anims/green-demon-anims.js";
+import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -20,6 +23,12 @@ export default class Game extends Phaser.Scene {
         this.physics.world.bounds.width = this.sys.config.width * TILE_SIZE.w;
         this.physics.world.bounds.height = this.sys.config.height * TILE_SIZE.h;
 
+        // Creating anims
+        adventurerAnims(this.anims);
+        greenDemonAnims(this.anims);
+        treasureChestAnims(this.anims);
+
+        // Creating Adventurer Object.
         this.adventurer = new Adventurer({
             scene: this,
             positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
@@ -28,6 +37,7 @@ export default class Game extends Phaser.Scene {
             id: 1,
         });
 
+        // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
         this.greenDemonsGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
         const greenDemonLayer = TILESET_MAP.getObjectLayer("green-demon");
         greenDemonLayer.objects.forEach((greenDemonObj) => {
@@ -43,6 +53,7 @@ export default class Game extends Phaser.Scene {
         this.greenDemonsGroup.runChildUpdate = true;
         this.greenDemonsGroup.preUpdate(1, 1);
 
+        // Creating TreasureChest Objects and adding them to Physics.Arcade.Group "treasureChestGroup".
         this.treasureChestGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
         const treasureChestLayer = TILESET_MAP.getObjectLayer("treasure-chest");
         treasureChestLayer.objects.forEach((treasureChestObj) => {
@@ -56,9 +67,9 @@ export default class Game extends Phaser.Scene {
             this.treasureChestGroup.add(new Treasure(config));
         });
 
+        // Adding colliders
         this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
         this.physics.add.collider(this.adventurer, this.treasureChestGroup);
-
         LAYERS.forEach((item) => {
             let layer = TILESET_MAP.createLayer(item, TILESET_MAP_IMAGE);
             layer.setCollisionByProperty({ collision: true });

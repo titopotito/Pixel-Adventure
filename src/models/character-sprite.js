@@ -8,11 +8,6 @@ export default class CharacterSprite extends GameSprite {
         this.atk = stats.atk;
         this.maxHP = stats.maxHP;
         this.currentHP = this.maxHP;
-
-        this.createAnimsWithDirection("idle", 1);
-        this.createAnimsWithDirection("walk", 4, -1);
-        this.createAnimsWithDirection("attack", 1);
-        this.createAnims("die", 1);
     }
 
     get stats() {
@@ -31,7 +26,7 @@ export default class CharacterSprite extends GameSprite {
 
     idle() {
         this.setVelocity(0, 0);
-        this.anims.play(`${this.id}-${this.texture.key}-idle-${this.currentDirection}`, true);
+        this.anims.play(`${this.texture.key}-idle-${this.currentDirection}`, true);
     }
 
     walk(direction) {
@@ -42,16 +37,16 @@ export default class CharacterSprite extends GameSprite {
             right: { x: this.speed, y: 0 },
         };
         this.setVelocity(velocityMap[direction].x, velocityMap[direction].y);
-        this.anims.play(`${this.id}-${this.texture.key}-walk-${direction}`, true);
+        this.anims.play(`${this.texture.key}-walk-${direction}`, true);
         this.currentDirection = direction;
     }
 
     attack() {
-        this.anims.play(`${this.id}-${this.texture.key}-attack-${this.currentDirection}`);
+        this.anims.play(`${this.texture.key}-attack-${this.currentDirection}`);
     }
 
     die() {
-        this.anims.play(`${this.id}-${this.texture.key}-die`);
+        this.anims.play(`${this.texture.key}-die`);
     }
 
     receiveDamage(damage) {
