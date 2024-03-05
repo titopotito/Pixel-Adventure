@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import Preloader from "./scenes/preloader.js";
 import Game from "./scenes/game.js";
+import GameUI from "./scenes/gameUI.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -13,7 +14,7 @@ const config = {
             debug: true,
         },
     },
-    scene: [Preloader, Game],
+    scene: [Preloader, Game, GameUI],
     scale: {
         zoom: 2,
     },

@@ -22,9 +22,8 @@ export default class Game extends Phaser.Scene {
         const TILESET_MAP = this.make.tilemap({ key: "tileset" });
         const TILESET_MAP_IMAGE = TILESET_MAP.addTilesetImage("tileset", "tileset");
         const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
-
-        this.physics.world.bounds.width = this.sys.config.width * TILE_SIZE.w;
-        this.physics.world.bounds.height = this.sys.config.height * TILE_SIZE.h;
+        this.physics.world.bounds.width = this.sys.game.config.width * TILE_SIZE.w;
+        this.physics.world.bounds.height = this.sys.game.config.height * TILE_SIZE.h;
 
         // Creating anims
         adventurerAnims(this.anims);
@@ -39,12 +38,6 @@ export default class Game extends Phaser.Scene {
             positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
             positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
-        });
-
-        this.slashEffects = this.physics.add.group({
-            key: "slash",
-            classType: Phaser.Physics.Arcade.Sprite,
-            maxSize: 3,
         });
 
         // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
@@ -86,6 +79,8 @@ export default class Game extends Phaser.Scene {
             this.physics.add.collider(this.greenDemonsGroup, layer);
             this.physics.add.collider(this.treasureChestGroup, layer);
         });
+
+        this.scene.run("gameUI", { adventurer: this.adventurer });
     }
 
     update() {
