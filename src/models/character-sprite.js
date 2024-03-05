@@ -2,6 +2,7 @@ import GameSprite from "./game-sprite.js";
 export default class CharacterSprite extends GameSprite {
     constructor(config, stats = { level: 1, atk: 10, maxHP: 100 }) {
         super(config);
+        this.body.collideWorldBounds = true;
         this.speed = 100;
         this.currentDirection = "down";
         this.level = stats.level;

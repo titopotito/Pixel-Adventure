@@ -1,0 +1,65 @@
+{
+    "frames": [
+        {
+            "filename": "sword-1.png",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 7,
+                "h": 16
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 7,
+                "h": 16
+            },
+            "sourceSize": {
+                "w": 7,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "sword-in-hand-1.png",
+            "frame": {
+                "x": 0,
+                "y": 16,
+                "w": 7,
+                "h": 12
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 7,
+                "h": 12
+            },
+            "sourceSize": {
+                "w": 7,
+                "h": 12
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "app": "http://free-tex-packer.com",
+        "version": "0.6.7",
+        "image": "texture.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 7,
+            "h": 28
+        },
+        "scale": 1
+    }
+}

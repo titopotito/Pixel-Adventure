@@ -19,6 +19,10 @@ import spiritPNGUrl from "/public/enemies/spirit/texture.png";
 import spiritJSONUrl from "/public/enemies/spirit/texture.json";
 import treasureChestPNGUrl from "/public/items/treasure/texture.png";
 import treasureChestJSONUrl from "/public/items/treasure/texture.json";
+import swordPNGUrl from "/public/items/sword/texture.png";
+import swordJSONUrl from "/public/items/sword/texture.json";
+import slashPNGUrl from "/public/slash/texture.png";
+import slashJSONUrl from "/public/slash/texture.json";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -37,6 +41,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.atlas("flame-enemy", flameEnemyPNGUrl, flameEnemyJSONUrl);
         this.load.atlas("spirit", spiritPNGUrl, spiritJSONUrl);
         this.load.atlas("treasure-chest", treasureChestPNGUrl, treasureChestJSONUrl);
+        this.load.atlas("sword", swordPNGUrl, swordJSONUrl);
+        this.load.atlas("slash", slashPNGUrl, slashJSONUrl);
     }
 
     create() {

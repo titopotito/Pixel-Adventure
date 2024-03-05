@@ -6,6 +6,5 @@ export default class GameSprite extends Phaser.Physics.Arcade.Sprite {
         this.addToDisplayList();
         this.addToUpdateList();
         this.setDepth(1);
-        this.body.collideWorldBounds = true;
     }
 }

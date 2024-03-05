@@ -4,9 +4,9 @@ const KEY = "green-demon";
 
 const ACTION_MAP = {
     walk: { frames: 4, repeat: -1, hasDirection: true },
-    idle: { frames: 1, repeat: 1, hasDirection: true },
-    attack: { frames: 1, repeat: 1, hasDirection: true },
-    die: { frames: 1, repeat: 1, hasDirection: false },
+    idle: { frames: 1, repeat: 0, hasDirection: true },
+    attack: { frames: 1, repeat: 0, hasDirection: true },
+    die: { frames: 1, repeat: 0, hasDirection: false },
 };
 
 function greenDemonAnims(anims) {

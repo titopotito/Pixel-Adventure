@@ -1,4 +1,6 @@
 import CharacterSprite from "./character-sprite.js";
+import GameSprite from "./game-sprite.js";
+
 export default class Adventurer extends CharacterSprite {
     constructor(config) {
         super(config);
@@ -22,6 +24,52 @@ export default class Adventurer extends CharacterSprite {
         return keyboardEventMap;
     }
 
+    attack() {
+        super.attack();
+
+        // Setting configuration for SlashEffect Sprite
+        const slashConfig = { scene: this.scene, spriteName: "slash" };
+        let angle = 0;
+        if (this.currentDirection === "down") {
+            slashConfig.positionX = this.x;
+            slashConfig.positionY = this.y + this.height / 2;
+            angle = 90;
+        } else if (this.currentDirection === "up") {
+            slashConfig.positionX = this.x;
+            slashConfig.positionY = this.y - this.height / 2;
+            angle = 270;
+        } else if (this.currentDirection === "left") {
+            slashConfig.positionX = this.x - this.width / 2;
+            slashConfig.positionY = this.y;
+            angle = 180;
+        } else {
+            slashConfig.positionX = this.x + this.width / 2;
+            slashConfig.positionY = this.y;
+        }
+
+        // Creating SlashEffect Sprite and playing animation
+        const slashEffect = new GameSprite(slashConfig);
+        slashEffect.setRotation(Phaser.Math.DegToRad(angle));
+        slashEffect.anims.play({ key: "slash-slash", frameRate: 20 });
+
+        // Adding objects to collide with SlashEffect
+        this.scene.physics.add.collider(slashEffect, this.target, function (slash, target) {
+            target.die();
+        });
+
+        // Destroying SlashEffect Sprite after animation has played
+        this.scene.time.addEvent({
+            delay: 200,
+            callback: function () {
+                slashEffect.destroy();
+            },
+        });
+    }
+
+    setAttackCollision(target) {
+        this.target = target;
+    }
+
     updateAnimation() {
         if (this.keyboardEventMap["walk-up"].isDown) {
             this.walk("up");
@@ -35,7 +83,7 @@ export default class Adventurer extends CharacterSprite {
             this.idle();
         }
 
-        if (this.keyboardEventMap["attack"].isDown) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyboardEventMap["attack"])) {
             this.attack();
         }
     }

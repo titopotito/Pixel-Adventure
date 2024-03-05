@@ -5,6 +5,9 @@ import Treasure from "../models/treasure.js";
 import { adventurerAnims } from "../anims/adventurer-anims.js";
 import { greenDemonAnims } from "../anims/green-demon-anims.js";
 import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
+import { swordAnims } from "../anims/sword-anims.js";
+import { slashAnims } from "../anims/slash-anims.js";
+import GameSprite from "../models/game-sprite.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -27,6 +30,8 @@ export default class Game extends Phaser.Scene {
         adventurerAnims(this.anims);
         greenDemonAnims(this.anims);
         treasureChestAnims(this.anims);
+        swordAnims(this.anims);
+        slashAnims(this.anims);
 
         // Creating Adventurer Object.
         this.adventurer = new Adventurer({
@@ -34,7 +39,12 @@ export default class Game extends Phaser.Scene {
             positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
             positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
-            id: 1,
+        });
+
+        this.slashEffects = this.physics.add.group({
+            key: "slash",
+            classType: Phaser.Physics.Arcade.Sprite,
+            maxSize: 3,
         });
 
         // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
@@ -46,7 +56,6 @@ export default class Game extends Phaser.Scene {
                 positionX: greenDemonObj.x,
                 positionY: greenDemonObj.y,
                 spriteName: "green-demon",
-                id: greenDemonObj.id,
             };
             this.greenDemonsGroup.add(new Enemy(config));
         });
@@ -62,12 +71,12 @@ export default class Game extends Phaser.Scene {
                 positionX: treasureChestObj.x,
                 positionY: treasureChestObj.y,
                 spriteName: "treasure-chest",
-                id: treasureChestObj.id,
             };
             this.treasureChestGroup.add(new Treasure(config));
         });
 
-        // Adding colliders
+        this.adventurer.setAttackCollision(this.greenDemonsGroup);
+
         this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
         this.physics.add.collider(this.adventurer, this.treasureChestGroup);
         LAYERS.forEach((item) => {
