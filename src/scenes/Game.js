@@ -7,11 +7,14 @@ import { greenDemonAnims } from "../anims/green-demon-anims.js";
 import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
 import { swordAnims } from "../anims/sword-anims.js";
 import { slashAnims } from "../anims/slash-anims.js";
-import GameSprite from "../models/game-sprite.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
         super("game");
+    }
+
+    init() {
+        this.events.on(Phaser.Scenes.Events.POST_UPDATE, this.lateUpdate, this);
     }
 
     preload() {}
@@ -53,7 +56,6 @@ export default class Game extends Phaser.Scene {
             this.greenDemonsGroup.add(new Enemy(config));
         });
         this.greenDemonsGroup.runChildUpdate = true;
-        this.greenDemonsGroup.preUpdate(1, 1);
 
         // Creating TreasureChest Objects and adding them to Physics.Arcade.Group "treasureChestGroup".
         this.treasureChestGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
@@ -80,10 +82,15 @@ export default class Game extends Phaser.Scene {
             this.physics.add.collider(this.treasureChestGroup, layer);
         });
 
-        this.scene.run("gameUI", { adventurer: this.adventurer });
+        this.scene.run("gameUI", { adventurer: this.adventurer, greenDemonsGroup: this.greenDemonsGroup });
+        this.gameUIScene = this.scene.get("gameUI");
     }
 
-    update() {
+    update(t, dt) {}
+
+    lateUpdate(t, dt) {
         this.adventurer.updateAnimation();
+        this.greenDemonsGroup.preUpdate(t, dt);
+        this.gameUIScene.update(t, dt);
     }
 }

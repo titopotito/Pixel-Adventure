@@ -8,7 +8,7 @@ export default class CharacterSprite extends GameSprite {
         this.level = stats.level;
         this.atk = stats.atk;
         this.maxHP = stats.maxHP;
-        this.currentHP = this.maxHP;
+        this.currentHP = 90;
     }
 
     get stats() {
