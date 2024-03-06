@@ -9,6 +9,7 @@ export default class CharacterSprite extends GameSprite {
         this.atk = stats.atk;
         this.maxHP = stats.maxHP;
         this.currentHP = this.maxHP;
+        this.isAttacking = false;
     }
 
     get stats() {
@@ -38,12 +39,15 @@ export default class CharacterSprite extends GameSprite {
             right: { x: this.speed, y: 0 },
         };
         this.setVelocity(velocityMap[direction].x, velocityMap[direction].y);
-        this.anims.play(`${this.texture.key}-walk-${direction}`, true);
+        if (!this.isAttacking) {
+            this.anims.play(`${this.texture.key}-walk-${direction}`, true);
+        }
         this.currentDirection = direction;
     }
 
     attack() {
         this.anims.play(`${this.texture.key}-attack-${this.currentDirection}`);
+        this.isAttacking = true;
     }
 
     die() {

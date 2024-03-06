@@ -53,7 +53,9 @@ export default class Game extends Phaser.Scene {
                 positionY: greenDemonObj.y,
                 spriteName: "green-demon",
             };
-            this.greenDemonsGroup.add(new Enemy(config));
+            const greenDemon = new Enemy(config);
+            greenDemon.setTarget(this.adventurer);
+            this.greenDemonsGroup.add(greenDemon);
         });
 
         // Creating TreasureChest Objects and adding them to Physics.Arcade.Group "treasureChestGroup".
@@ -73,6 +75,7 @@ export default class Game extends Phaser.Scene {
 
         this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
         this.physics.add.collider(this.adventurer, this.treasureChestGroup);
+        this.physics.add.collider(this.greenDemonsGroup, this.greenDemonsGroup);
         LAYERS.forEach((item) => {
             let layer = TILESET_MAP.createLayer(item, TILESET_MAP_IMAGE);
             layer.setCollisionByProperty({ collision: true });

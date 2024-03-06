@@ -50,7 +50,7 @@ export default class Adventurer extends CharacterSprite {
         // Creating SlashEffect Sprite and playing animation
         const slashEffect = new GameSprite(slashConfig);
         slashEffect.setRotation(Phaser.Math.DegToRad(angle));
-        slashEffect.anims.play({ key: "slash-slash", frameRate: 20 });
+        slashEffect.anims.playAfterDelay({ key: "slash-slash", frameRate: 20 }, 40);
 
         // Adding objects to collide with SlashEffect and making target take damage
         this.scene.physics.add.collider(slashEffect, this.target, (slash, target) => {
@@ -80,11 +80,21 @@ export default class Adventurer extends CharacterSprite {
         } else if (this.keyboardEventMap["walk-right"].isDown) {
             this.walk("right");
         } else {
-            this.idle();
+            if (!this.isAttacking) this.idle();
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.keyboardEventMap["attack"])) {
+        if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["attack"], 500)) {
             this.attack();
+            this.scene.time.addEvent({
+                delay: 200,
+                callback: () => {
+                    this.isAttacking = false;
+                },
+            });
         }
+
+        // if (Phaser.Input.Keyboard.JustDown(this.keyboardEventMap["attack"])) {
+        //     this.attack();
+        // }
     }
 }
