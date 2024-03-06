@@ -7,16 +7,17 @@ export default class Enemy extends CharacterSprite {
 
     die() {
         super.die();
+        this.removeFromUpdateList();
         this.scene.time.addEvent({
-            delay: 200,
+            delay: 500,
             callback: () => {
                 this.destroy();
             },
         });
     }
 
-    preUpdate(t, d) {
-        super.preUpdate(t, d);
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
         this.walk("up");
     }
 }

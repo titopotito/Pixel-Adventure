@@ -55,7 +55,6 @@ export default class Game extends Phaser.Scene {
             };
             this.greenDemonsGroup.add(new Enemy(config));
         });
-        this.greenDemonsGroup.runChildUpdate = true;
 
         // Creating TreasureChest Objects and adding them to Physics.Arcade.Group "treasureChestGroup".
         this.treasureChestGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
@@ -89,7 +88,7 @@ export default class Game extends Phaser.Scene {
     update(t, dt) {}
 
     lateUpdate(t, dt) {
-        this.adventurer.updateAnimation();
+        this.adventurer.update(t, dt);
         this.greenDemonsGroup.preUpdate(t, dt);
         this.gameUIScene.update(t, dt);
     }

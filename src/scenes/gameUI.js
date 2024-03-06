@@ -22,10 +22,19 @@ export default class GameUI extends Phaser.Scene {
             height: 6,
             offsetX: 0,
             offsetY: 100,
+            withText: true,
+        });
+
+        this.greenDemonsHpBarGroup = [];
+        this.data.greenDemonsGroup.children.each((greenDemon) => {
+            this.greenDemonsHpBarGroup.push(
+                new HealthBarUI(this, greenDemon, { width: 20, height: 4, offsetX: 0, offsetY: -12 })
+            );
         });
     }
 
     update(t, dt) {
         this.adventurerHpBar.preUpdate(t, dt);
+        this.greenDemonsHpBarGroup.forEach((hPBarUI) => hPBarUI.preUpdate(t, dt));
     }
 }

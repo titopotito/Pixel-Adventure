@@ -7,7 +7,7 @@ export default class HealthBarUI extends Phaser.GameObjects.Rectangle {
     constructor(scene, character, config) {
         const hpPercent = character.currentHP / character.maxHP;
 
-        const maxHPBar = {
+        const maxHpBar = {
             x: character.x + config.offsetX,
             y: character.y + config.offsetY,
             width: config.width,
@@ -15,28 +15,31 @@ export default class HealthBarUI extends Phaser.GameObjects.Rectangle {
             color: RED_COLOR,
         };
 
-        const currentHPBar = {
-            x: maxHPBar.x - maxHPBar.width / 2,
-            y: maxHPBar.y - maxHPBar.height / 2,
-            width: maxHPBar.width * hpPercent,
-            height: maxHPBar.height,
+        const currentHpBar = {
+            x: maxHpBar.x - maxHpBar.width / 2,
+            y: maxHpBar.y - maxHpBar.height / 2,
+            width: maxHpBar.width * hpPercent,
+            height: maxHpBar.height,
             color: GREEN_COLOR,
         };
 
-        super(scene, maxHPBar.x, maxHPBar.y, maxHPBar.width, maxHPBar.height, maxHPBar.color);
+        super(scene, maxHpBar.x, maxHpBar.y, maxHpBar.width, maxHpBar.height, maxHpBar.color);
         this.addToDisplayList();
 
-        this.currentHPBar = scene.add
-            .rectangle(currentHPBar.x, currentHPBar.y, currentHPBar.width, currentHPBar.height, currentHPBar.color)
+        this.currentHpBar = scene.add
+            .rectangle(currentHpBar.x, currentHpBar.y, currentHpBar.width, currentHpBar.height, currentHpBar.color)
             .setOrigin(0, 0);
 
-        this.hpText = scene.add
-            .text(maxHPBar.x, maxHPBar.y, `${character.currentHP}/${character.maxHP}`, { fontSize: 7 })
-            .setOrigin(0.5, 0.5);
+        if (config.withText) {
+            this.hPText = scene.add
+                .text(maxHpBar.x, maxHpBar.y, `${character.currentHP}/${character.maxHP}`, { fontSize: 7 })
+                .setOrigin(0.5, 0.5);
+        }
 
         this.character = character;
         this.offsetX = config.offsetX;
         this.offsetY = config.offsetY;
+        this.withText = config.withText;
     }
 
     get newPosition() {
@@ -47,12 +50,24 @@ export default class HealthBarUI extends Phaser.GameObjects.Rectangle {
         return newPosition;
     }
 
+    get newHpWidth() {
+        const hpPercent = this.character.currentHP / this.character.maxHP;
+        const newHpWidth = this.width * hpPercent;
+        return newHpWidth;
+    }
+
     preUpdate(t, dt) {
         this.x = this.newPosition.x;
         this.y = this.newPosition.y;
-        this.currentHPBar.x = this.x - this.width / 2;
-        this.currentHPBar.y = this.y - this.height / 2;
-        this.hpText.x = this.x;
-        this.hpText.y = this.y;
+        this.currentHpBar.x = this.x - this.width / 2;
+        this.currentHpBar.y = this.y - this.height / 2;
+        this.currentHpBar.width = this.newHpWidth;
+        if (this.withText) {
+            this.hPText.x = this.x;
+            this.hPText.y = this.y;
+        }
+        if (this.currentHpBar.width === 0) {
+            this.destroy();
+        }
     }
 }

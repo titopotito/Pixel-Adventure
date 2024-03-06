@@ -52,9 +52,9 @@ export default class Adventurer extends CharacterSprite {
         slashEffect.setRotation(Phaser.Math.DegToRad(angle));
         slashEffect.anims.play({ key: "slash-slash", frameRate: 20 });
 
-        // Adding objects to collide with SlashEffect
-        this.scene.physics.add.collider(slashEffect, this.target, function (slash, target) {
-            target.die();
+        // Adding objects to collide with SlashEffect and making target take damage
+        this.scene.physics.add.collider(slashEffect, this.target, (slash, target) => {
+            target.takeDamage(this.atk);
         });
 
         // Destroying SlashEffect Sprite after animation has played
@@ -70,7 +70,7 @@ export default class Adventurer extends CharacterSprite {
         this.target = target;
     }
 
-    updateAnimation() {
+    update(t, dt) {
         if (this.keyboardEventMap["walk-up"].isDown) {
             this.walk("up");
         } else if (this.keyboardEventMap["walk-down"].isDown) {

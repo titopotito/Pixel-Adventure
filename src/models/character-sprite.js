@@ -1,6 +1,6 @@
 import GameSprite from "./game-sprite.js";
 export default class CharacterSprite extends GameSprite {
-    constructor(config, stats = { level: 1, atk: 10, maxHP: 100 }) {
+    constructor(config, stats = { level: 1, atk: 5, maxHP: 100 }) {
         super(config);
         this.body.collideWorldBounds = true;
         this.speed = 100;
@@ -8,7 +8,7 @@ export default class CharacterSprite extends GameSprite {
         this.level = stats.level;
         this.atk = stats.atk;
         this.maxHP = stats.maxHP;
-        this.currentHP = 90;
+        this.currentHP = this.maxHP;
     }
 
     get stats() {
@@ -50,7 +50,7 @@ export default class CharacterSprite extends GameSprite {
         this.anims.play(`${this.texture.key}-die`);
     }
 
-    receiveDamage(damage) {
+    takeDamage(damage) {
         if (this.currentHP > damage) {
             this.currentHP -= damage;
         } else {
