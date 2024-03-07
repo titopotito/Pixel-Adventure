@@ -57,15 +57,24 @@ export default class HealthBarUI extends Phaser.GameObjects.Rectangle {
     }
 
     preUpdate(t, dt) {
+        // Update position of red hp bar
         this.x = this.newPosition.x;
         this.y = this.newPosition.y;
+
+        // update position of green hp bar
         this.currentHpBar.x = this.x - this.width / 2;
         this.currentHpBar.y = this.y - this.height / 2;
+
+        // update width of green hp bar
         this.currentHpBar.width = this.newHpWidth;
+
+        // display text if withText is true
         if (this.withText) {
             this.hPText.x = this.x;
             this.hPText.y = this.y;
         }
+
+        // destroy this hp bar object if the character of this object dies
         if (this.currentHpBar.width === 0) {
             this.destroy();
         }

@@ -52,6 +52,7 @@ export default class CharacterSprite extends GameSprite {
 
     die() {
         this.anims.play(`${this.texture.key}-die`);
+        this.setVelocity(0);
     }
 
     takeDamage(damage) {

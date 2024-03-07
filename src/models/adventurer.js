@@ -57,7 +57,7 @@ export default class Adventurer extends CharacterSprite {
             target.takeDamage(this.atk);
         });
 
-        // Destroying SlashEffect Sprite after animation has played
+        // Destroy SlashEffect Sprite after 200ms
         this.scene.time.addEvent({
             delay: 200,
             callback: function () {
@@ -66,6 +66,7 @@ export default class Adventurer extends CharacterSprite {
         });
     }
 
+    // set targets that will be hit by the adventurers attacks
     setAttackCollision(target) {
         this.target = target;
     }
@@ -80,11 +81,15 @@ export default class Adventurer extends CharacterSprite {
         } else if (this.keyboardEventMap["walk-right"].isDown) {
             this.walk("right");
         } else {
+            // play idle animation only when not walking and not in attacking state
             if (!this.isAttacking) this.idle();
         }
 
+        // If attack button is continually pressed down, sprite will only attack every 500ms
         if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["attack"], 500)) {
             this.attack();
+
+            // Attacking state will end after 200ms
             this.scene.time.addEvent({
                 delay: 200,
                 callback: () => {
@@ -92,9 +97,5 @@ export default class Adventurer extends CharacterSprite {
                 },
             });
         }
-
-        // if (Phaser.Input.Keyboard.JustDown(this.keyboardEventMap["attack"])) {
-        //     this.attack();
-        // }
     }
 }
