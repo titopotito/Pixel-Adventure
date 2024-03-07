@@ -1,11 +1,12 @@
 import CharacterSprite from "./character-sprite.js";
-import GameSprite from "./game-sprite.js";
+import OverlapBody from "./overlap-body.js";
 import AttackEffect from "./attack-effect.js";
 
 export default class Adventurer extends CharacterSprite {
     constructor(config) {
         super(config);
         this.scene.cameras.main.startFollow(this, true);
+        this.overlapBody = new OverlapBody({ ...config, character: this });
     }
 
     get keyboardEventMap() {
@@ -22,7 +23,14 @@ export default class Adventurer extends CharacterSprite {
         }
 
         keyboardEventMap["attack"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
+        keyboardEventMap["interact"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         return keyboardEventMap;
+    }
+
+    interact(treasure) {
+        if (this.keyboardEventMap["interact"].isDown) {
+            treasure.open();
+        }
     }
 
     attack() {
@@ -81,5 +89,7 @@ export default class Adventurer extends CharacterSprite {
                 },
             });
         }
+
+        this.overlapBody.preUpdate(t, dt);
     }
 }

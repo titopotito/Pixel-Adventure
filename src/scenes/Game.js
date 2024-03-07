@@ -78,6 +78,10 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
         this.physics.add.collider(this.adventurer, this.treasureChestGroup);
         this.physics.add.collider(this.greenDemonsGroup, this.greenDemonsGroup);
+        this.physics.add.overlap(this.adventurer.overlapBody, this.treasureChestGroup, (body, treasure) =>
+            this.adventurer.interact(treasure)
+        );
+
         LAYERS.forEach((item) => {
             let layer = TILESET_MAP.createLayer(item, TILESET_MAP_IMAGE);
             layer.setCollisionByProperty({ collision: true });

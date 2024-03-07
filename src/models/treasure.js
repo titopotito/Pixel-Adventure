@@ -6,7 +6,8 @@ export default class Treasure extends GameSprite {
     }
 
     open() {
-        this.createAnims("open", 1);
-        this.anims.play(`${this.id}-${this.sprite.texture.key}-open`);
+        this.anims.play(`${this.texture.key}-open`);
+        console.log("opened");
+        this.removeFromUpdateList();
     }
 }

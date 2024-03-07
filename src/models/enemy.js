@@ -80,7 +80,7 @@ export default class Enemy extends CharacterSprite {
                 this.walk("down");
             }
         }
-        // if target is attack range:
+        // if target is in attack range:
         // do attack if attack is not on cooldown
         // do nothing if attack is on cooldown
         else if (distance.d <= this.attackRange) {
