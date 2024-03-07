@@ -93,7 +93,7 @@ export default class Game extends Phaser.Scene {
     update(t, dt) {}
 
     lateUpdate(t, dt) {
-        this.adventurer.update(t, dt);
+        this.adventurer.preUpdate(t, dt);
         this.greenDemonsGroup.preUpdate(t, dt);
         this.gameUIScene.update(t, dt);
     }

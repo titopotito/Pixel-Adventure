@@ -10,6 +10,7 @@ export default class CharacterSprite extends GameSprite {
         this.maxHP = stats.maxHP;
         this.currentHP = this.maxHP;
         this.isAttacking = false;
+        this.isAlive = true;
     }
 
     get stats() {
@@ -51,8 +52,10 @@ export default class CharacterSprite extends GameSprite {
     }
 
     die() {
-        this.anims.play(`${this.texture.key}-die`);
+        this.isAlive = false;
         this.setVelocity(0);
+        this.anims.play(`${this.texture.key}-die`);
+        this.removeFromUpdateList();
     }
 
     takeDamage(damage) {
@@ -60,6 +63,7 @@ export default class CharacterSprite extends GameSprite {
             this.currentHP -= damage;
         } else {
             this.currentHP = 0;
+            this.isAlive = false;
             this.die();
         }
     }

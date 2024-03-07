@@ -51,7 +51,11 @@ export default class Adventurer extends CharacterSprite {
         this.target = target;
     }
 
-    update(t, dt) {
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
+
+        if (!this.isAlive) return;
+
         if (this.keyboardEventMap["walk-up"].isDown) {
             this.walk("up");
         } else if (this.keyboardEventMap["walk-down"].isDown) {

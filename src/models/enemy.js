@@ -10,11 +10,11 @@ export default class Enemy extends CharacterSprite {
         this.lastAttackTime = 0;
         this.attackRange = 24;
         this.detectionRange = 80;
+        this.atk = 1;
     }
 
     die() {
         super.die();
-        this.removeFromUpdateList();
         this.scene.time.addEvent({
             delay: 500,
             callback: () => {
@@ -31,17 +31,22 @@ export default class Enemy extends CharacterSprite {
         const dx = this.x - this.target.x;
         const dy = this.y - this.target.y;
         const d = Math.sqrt(dx ** 2 + dy ** 2);
-
         const distance = { dx, dy, d };
         return distance;
     }
 
     attack() {
-        // play attack animation and enter attacking state
+        // play attack animation and scratch effect then enter attacking state
         super.attack();
         const scratchEffect = new AttackEffect(this, "scratch", 0.5);
         scratchEffect.play();
 
+        // set scratch effect to collide with target
+        this.scene.physics.add.collider(scratchEffect, this.target, (scratch, target) => {
+            target.takeDamage(this.atk);
+        });
+
+        // prevent enemy sprite from moving while attack animation is playing
         this.setVelocity(0);
 
         // record time of this attack

@@ -72,6 +72,7 @@ export default class HealthBarUI extends Phaser.GameObjects.Rectangle {
         if (this.withText) {
             this.hPText.x = this.x;
             this.hPText.y = this.y;
+            this.hPText.text = `${this.character.currentHP}/${this.character.maxHP}`;
         }
 
         // destroy this hp bar object if the character of this object dies
