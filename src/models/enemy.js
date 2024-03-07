@@ -1,4 +1,6 @@
 import CharacterSprite from "./character-sprite.js";
+import AttackEffect from "./attack-effect.js";
+
 export default class Enemy extends CharacterSprite {
     constructor(config) {
         super(config);
@@ -37,6 +39,9 @@ export default class Enemy extends CharacterSprite {
     attack() {
         // play attack animation and enter attacking state
         super.attack();
+        const scratchEffect = new AttackEffect(this, "scratch", 0.5);
+        scratchEffect.play();
+
         this.setVelocity(0);
 
         // record time of this attack
@@ -46,6 +51,7 @@ export default class Enemy extends CharacterSprite {
         this.scene.time.addEvent({
             delay: 200,
             callback: () => {
+                scratchEffect.destroy();
                 this.isAttacking = false;
                 this.idle();
             },

@@ -21,8 +21,10 @@ import treasureChestPNGUrl from "/public/items/treasure/texture.png";
 import treasureChestJSONUrl from "/public/items/treasure/texture.json";
 import swordPNGUrl from "/public/items/sword/texture.png";
 import swordJSONUrl from "/public/items/sword/texture.json";
-import slashPNGUrl from "/public/slash/texture.png";
-import slashJSONUrl from "/public/slash/texture.json";
+import slashPNGUrl from "/public/attack-effects/slash/texture.png";
+import slashJSONUrl from "/public/attack-effects/slash/texture.json";
+import scratchPNGUrl from "/public/attack-effects/scratch/texture.png";
+import scratchJSONUrl from "/public/attack-effects/scratch/texture.json";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -43,6 +45,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.atlas("treasure-chest", treasureChestPNGUrl, treasureChestJSONUrl);
         this.load.atlas("sword", swordPNGUrl, swordJSONUrl);
         this.load.atlas("slash", slashPNGUrl, slashJSONUrl);
+        this.load.atlas("scratch", scratchPNGUrl, scratchJSONUrl);
     }
 
     create() {

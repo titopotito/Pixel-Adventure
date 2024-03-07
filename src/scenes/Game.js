@@ -7,6 +7,7 @@ import { greenDemonAnims } from "../anims/green-demon-anims.js";
 import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
 import { swordAnims } from "../anims/sword-anims.js";
 import { slashAnims } from "../anims/slash-anims.js";
+import { scratchAnims } from "../anims/scratch-anims.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -34,6 +35,7 @@ export default class Game extends Phaser.Scene {
         treasureChestAnims(this.anims);
         swordAnims(this.anims);
         slashAnims(this.anims);
+        scratchAnims(this.anims);
 
         // Creating Adventurer Object.
         this.adventurer = new Adventurer({

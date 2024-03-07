@@ -1,5 +1,6 @@
 import CharacterSprite from "./character-sprite.js";
 import GameSprite from "./game-sprite.js";
+import AttackEffect from "./attack-effect.js";
 
 export default class Adventurer extends CharacterSprite {
     constructor(config) {
@@ -27,30 +28,9 @@ export default class Adventurer extends CharacterSprite {
     attack() {
         super.attack();
 
-        // Setting configuration for SlashEffect Sprite
-        const slashConfig = { scene: this.scene, spriteName: "slash" };
-        let angle = 0;
-        if (this.currentDirection === "down") {
-            slashConfig.positionX = this.x;
-            slashConfig.positionY = this.y + this.height / 2;
-            angle = 90;
-        } else if (this.currentDirection === "up") {
-            slashConfig.positionX = this.x;
-            slashConfig.positionY = this.y - this.height / 2;
-            angle = 270;
-        } else if (this.currentDirection === "left") {
-            slashConfig.positionX = this.x - this.width / 2;
-            slashConfig.positionY = this.y;
-            angle = 180;
-        } else {
-            slashConfig.positionX = this.x + this.width / 2;
-            slashConfig.positionY = this.y;
-        }
-
         // Creating SlashEffect Sprite and playing animation
-        const slashEffect = new GameSprite(slashConfig);
-        slashEffect.setRotation(Phaser.Math.DegToRad(angle));
-        slashEffect.anims.playAfterDelay({ key: "slash-slash", frameRate: 20 }, 40);
+        const slashEffect = new AttackEffect(this, "slash");
+        slashEffect.play();
 
         // Adding objects to collide with SlashEffect and making target take damage
         this.scene.physics.add.collider(slashEffect, this.target, (slash, target) => {
