@@ -1,4 +1,7 @@
 import GameSprite from "./game-sprite.js";
+
+const FROZEN_COLOR = "0x0000FF";
+
 export default class CharacterSprite extends GameSprite {
     constructor(config, stats = { level: 1, atk: 5, maxHP: 100 }) {
         super(config);
@@ -11,6 +14,7 @@ export default class CharacterSprite extends GameSprite {
         this.currentHP = this.maxHP;
         this.isAttacking = false;
         this.isAlive = true;
+        this.isFrozen = false;
     }
 
     get stats() {
@@ -74,5 +78,18 @@ export default class CharacterSprite extends GameSprite {
         } else {
             this.currentHP = this.maxHP;
         }
+    }
+
+    freeze() {
+        this.isFrozen = true;
+        this.setVelocity(0);
+        this.setTint(FROZEN_COLOR);
+        this.scene.time.addEvent({
+            delay: 4000,
+            callback: () => {
+                this.isFrozen = false;
+                this.setTint();
+            },
+        });
     }
 }

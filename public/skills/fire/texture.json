@@ -1,0 +1,115 @@
+{
+    "frames": [
+        {
+            "filename": "cast-1.png",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 14
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2,
+                "w": 16,
+                "h": 14
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-2.png",
+            "frame": {
+                "x": 16,
+                "y": 0,
+                "w": 16,
+                "h": 14
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2,
+                "w": 16,
+                "h": 14
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-3.png",
+            "frame": {
+                "x": 32,
+                "y": 0,
+                "w": 16,
+                "h": 14
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2,
+                "w": 16,
+                "h": 14
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-4.png",
+            "frame": {
+                "x": 48,
+                "y": 0,
+                "w": 16,
+                "h": 14
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2,
+                "w": 16,
+                "h": 14
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 16
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "app": "http://free-tex-packer.com",
+        "version": "0.6.7",
+        "image": "texture.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 62,
+            "h": 14
+        },
+        "scale": 1
+    }
+}

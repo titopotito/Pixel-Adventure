@@ -1,0 +1,240 @@
+{
+    "frames": [
+        {
+            "filename": "cast-1.png",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 19,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 19,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-2.png",
+            "frame": {
+                "x": 19,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-3.png",
+            "frame": {
+                "x": 52,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-4.png",
+            "frame": {
+                "x": 84,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-5.png",
+            "frame": {
+                "x": 116,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-6.png",
+            "frame": {
+                "x": 148,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-7.png",
+            "frame": {
+                "x": 180,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-8.png",
+            "frame": {
+                "x": 212,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cast-9.png",
+            "frame": {
+                "x": 244,
+                "y": 0,
+                "w": 33,
+                "h": 31
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 33,
+                "h": 31
+            },
+            "sourceSize": {
+                "w": 33,
+                "h": 32
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "app": "http://free-tex-packer.com",
+        "version": "0.6.7",
+        "image": "texture.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 269,
+            "h": 31
+        },
+        "scale": 1
+    }
+}

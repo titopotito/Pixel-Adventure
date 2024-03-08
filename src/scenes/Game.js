@@ -8,6 +8,12 @@ import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
 import { swordAnims } from "../anims/sword-anims.js";
 import { slashAnims } from "../anims/slash-anims.js";
 import { scratchAnims } from "../anims/scratch-anims.js";
+import { skillFireAnims } from "../anims/skill-fire-anims.js";
+import { skillIceAnims } from "../anims/skill-ice-anims.js";
+import { skillLightningAnims } from "../anims/skill-lightning-anims.js";
+import { skillPlantAnims } from "../anims/skill-plant-anims.js";
+import { skillRockAnims } from "../anims/skill-rock-anims.js";
+import Skill from "../models/skills.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -36,6 +42,11 @@ export default class Game extends Phaser.Scene {
         swordAnims(this.anims);
         slashAnims(this.anims);
         scratchAnims(this.anims);
+        skillIceAnims(this.anims);
+        skillFireAnims(this.anims);
+        skillLightningAnims(this.anims);
+        skillPlantAnims(this.anims);
+        skillRockAnims(this.anims);
 
         // Creating Adventurer Object.
         this.adventurer = new Adventurer({
@@ -44,6 +55,10 @@ export default class Game extends Phaser.Scene {
             positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
         });
+
+        this.skill = new Skill("freezing-field", this.adventurer);
+
+        this.adventurer.setSkill1(this.skill);
 
         // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
         this.greenDemonsGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);

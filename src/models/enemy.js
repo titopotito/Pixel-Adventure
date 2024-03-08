@@ -108,6 +108,7 @@ export default class Enemy extends CharacterSprite {
     }
 
     preUpdate(t, dt) {
+        if (this.isFrozen) return;
         super.preUpdate(t, dt);
         this.chasePlayer();
     }

@@ -25,6 +25,16 @@ import slashPNGUrl from "/public/attack-effects/slash/texture.png";
 import slashJSONUrl from "/public/attack-effects/slash/texture.json";
 import scratchPNGUrl from "/public/attack-effects/scratch/texture.png";
 import scratchJSONUrl from "/public/attack-effects/scratch/texture.json";
+import skillIcePNGUrl from "/public/skills/ice/texture.png";
+import skillIceJSONUrl from "/public/skills/ice/texture.json";
+import skillFirePNGUrl from "/public/skills/fire/texture.png";
+import skillFireJSONUrl from "/public/skills/fire/texture.json";
+import skillLightningPNGUrl from "/public/skills/lightning/texture.png";
+import skillLightningJSONUrl from "/public/skills/lightning/texture.json";
+import skillPlantPNGUrl from "/public/skills/plant/texture.png";
+import skillPlantJSONUrl from "/public/skills/plant/texture.json";
+import skillRockPNGUrl from "/public/skills/rock/texture.png";
+import skillRockJSONUrl from "/public/skills/rock/texture.json";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -46,6 +56,11 @@ export default class Preloader extends Phaser.Scene {
         this.load.atlas("sword", swordPNGUrl, swordJSONUrl);
         this.load.atlas("slash", slashPNGUrl, slashJSONUrl);
         this.load.atlas("scratch", scratchPNGUrl, scratchJSONUrl);
+        this.load.atlas("skill-ice", skillIcePNGUrl, skillIceJSONUrl);
+        this.load.atlas("skill-fire", skillFirePNGUrl, skillFireJSONUrl);
+        this.load.atlas("skill-lightning", skillLightningPNGUrl, skillLightningJSONUrl);
+        this.load.atlas("skill-plant", skillPlantPNGUrl, skillPlantJSONUrl);
+        this.load.atlas("skill-rock", skillRockPNGUrl, skillRockJSONUrl);
     }
 
     create() {

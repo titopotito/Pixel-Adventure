@@ -7,8 +7,10 @@ function createAnims(anims, key, actionMapObject) {
     const DIRECTIONS = ["up", "down", "left", "right"];
 
     for (let action in actionMapObject) {
-        let { frames, repeat, hasDirection } = actionMapObject[action];
-
+        let { frames, repeat, hasDirection, frameRate } = actionMapObject[action];
+        if (!frameRate) {
+            frameRate = 5;
+        }
         if (hasDirection) {
             DIRECTIONS.forEach((direction) => {
                 anims.create({
@@ -20,7 +22,7 @@ function createAnims(anims, key, actionMapObject) {
                         suffix: ".png",
                     }),
                     repeat: repeat,
-                    frameRate: 5,
+                    frameRate: frameRate,
                 });
             });
         } else {
@@ -33,7 +35,7 @@ function createAnims(anims, key, actionMapObject) {
                     suffix: ".png",
                 }),
                 repeat: repeat,
-                frameRate: 5,
+                frameRate: frameRate,
             });
         }
     }
