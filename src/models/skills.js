@@ -24,7 +24,7 @@ const SKILL_TABLE = {
             "lvl-9": { dmg: 1.1 },
             "lvl-10": { dmg: 1.2 },
         },
-        cooldown: 5000,
+        cooldown: 1000,
     },
     lightning: {
         "lvl-1": { dmg: 1 },
@@ -49,6 +49,21 @@ const SKILL_TABLE = {
         "lvl-8": { dmg: 1.7 },
         "lvl-9": { dmg: 1.8 },
         "lvl-10": { dmg: 1.9 },
+    },
+    "planet-befall": {
+        stats: {
+            "lvl-1": { dmg: 1 },
+            "lvl-2": { dmg: 1.1 },
+            "lvl-3": { dmg: 1.2 },
+            "lvl-4": { dmg: 1.3 },
+            "lvl-5": { dmg: 1.4 },
+            "lvl-6": { dmg: 1.5 },
+            "lvl-7": { dmg: 1.6 },
+            "lvl-8": { dmg: 1.7 },
+            "lvl-9": { dmg: 1.8 },
+            "lvl-10": { dmg: 1.9 },
+        },
+        cooldown: 1000,
     },
     plant: {
         stats: {
@@ -79,7 +94,9 @@ export default class Skill {
 
     cast() {
         if (this.skillName === "freezing-field") {
-            this.iceSkill();
+            this.freezingField();
+        } else if (this.skillName === "planet-befall") {
+            this.planetBefall();
         }
     }
 
@@ -88,29 +105,59 @@ export default class Skill {
         this.skillDamage = this.skillTable[this.skillName].stats["lvl-1"].dmg;
     }
 
-    iceSkill() {
-        const spawnPositions = this.getSpawnPositions();
+    planetBefall() {
+        const position = this.getRockSpawnPosition();
+        let rock2Sprite = new Phaser.Physics.Arcade.Sprite(this.scene, position.x, position.y, "rock2-sprite");
+        rock2Sprite.setScale(4);
+        rock2Sprite.setDepth(2);
+        this.scene.time.addEvent({
+            delay: 800,
+            callback: () => {
+                this.scene.physics.add.collider(rock2Sprite, this.caster.target, (rock2Sprite, target) => {
+                    target.takeDamage(this.caster.atk * this.skillDamage);
+                });
+            },
+        });
+        this.playAnimationForManyThenDestroy([rock2Sprite], "skill-rock2-cast", 1100);
+    }
+
+    getRockSpawnPosition() {
+        const OFFSET = 68;
+        if (this.caster.currentDirection === "down") {
+            return { x: this.caster.x, y: this.caster.y + OFFSET };
+        } else if (this.caster.currentDirection === "left") {
+            return { x: this.caster.x - OFFSET, y: this.caster.y };
+        } else if (this.caster.currentDirection === "up") {
+            return { x: this.caster.x, y: this.caster.y - OFFSET };
+        } else if (this.caster.currentDirection === "right") {
+            return { x: this.caster.x + OFFSET, y: this.caster.y };
+        }
+    }
+
+    freezingField() {
+        const spawnPositions = this.getIceSpawnPositions();
 
         const iceSprites = spawnPositions.map((position) => {
-            let iceSprite = new Phaser.Physics.Arcade.Sprite(this.caster.scene, position.x, position.y, "ice-sprite");
-            this.scene.physics.add.collider(iceSprite, this.caster.target, (slash, target) => {
+            let iceSprite = new Phaser.Physics.Arcade.Sprite(this.scene, position.x, position.y, "ice-sprite");
+            iceSprite.setDepth(2);
+            this.scene.physics.add.collider(iceSprite, this.caster.target, (iceSprite, target) => {
                 target.takeDamage(this.caster.atk * this.skillDamage);
                 target.freeze();
             });
             return iceSprite;
         });
 
-        this.playAnimationForManyThenDestroy(iceSprites.slice(0, 3), "skill-ice-cast")
+        this.playAnimationForManyThenDestroy(iceSprites.slice(0, 3), "skill-ice-cast", 400)
             .then((sprites) => {
-                return this.playAnimationForManyThenDestroy(iceSprites.slice(3, 6), "skill-ice-cast");
+                return this.playAnimationForManyThenDestroy(iceSprites.slice(3, 6), "skill-ice-cast", 400);
             })
             .then((sprites) => {
-                return this.playAnimationForManyThenDestroy(iceSprites.slice(6, 9), "skill-ice-cast");
+                return this.playAnimationForManyThenDestroy(iceSprites.slice(6, 9), "skill-ice-cast", 400);
             });
     }
 
     // gets the spawn position of the icicles
-    getSpawnPositions() {
+    getIceSpawnPositions() {
         const OFFSET = 32;
         if (this.caster.currentDirection === "down") {
             return [
@@ -182,7 +229,7 @@ export default class Skill {
     }
 
     //  create body for sprites > play animation > destroy sprite after delay
-    playAnimationForManyThenDestroy(sprites, animationKey) {
+    playAnimationForManyThenDestroy(sprites, animationKey, delay) {
         return new Promise((resolve, reject) => {
             sprites.forEach((sprite) => {
                 // Add a body and display each sprite object
@@ -200,7 +247,7 @@ export default class Skill {
                     resolve(sprites);
 
                     // delay by another 400ms before destroying each sprite needed to play-out the whole animation
-                    this.destroyManyAfterDelay(sprites, 400);
+                    this.destroyManyAfterDelay(sprites, delay - 100);
                 },
             });
         });

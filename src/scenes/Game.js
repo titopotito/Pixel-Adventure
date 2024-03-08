@@ -13,6 +13,7 @@ import { skillIceAnims } from "../anims/skill-ice-anims.js";
 import { skillLightningAnims } from "../anims/skill-lightning-anims.js";
 import { skillPlantAnims } from "../anims/skill-plant-anims.js";
 import { skillRockAnims } from "../anims/skill-rock-anims.js";
+import { skillRock2Anims } from "../anims/skill-rock2-anims.js";
 import Skill from "../models/skills.js";
 
 export default class Game extends Phaser.Scene {
@@ -47,6 +48,7 @@ export default class Game extends Phaser.Scene {
         skillLightningAnims(this.anims);
         skillPlantAnims(this.anims);
         skillRockAnims(this.anims);
+        skillRock2Anims(this.anims);
 
         // Creating Adventurer Object.
         this.adventurer = new Adventurer({
@@ -56,9 +58,11 @@ export default class Game extends Phaser.Scene {
             spriteName: "adventurer",
         });
 
-        this.skill = new Skill("freezing-field", this.adventurer);
+        this.skill1 = new Skill("freezing-field", this.adventurer);
+        this.skill2 = new Skill("planet-befall", this.adventurer);
 
-        this.adventurer.setSkill1(this.skill);
+        this.adventurer.setSkill1(this.skill1);
+        this.adventurer.setSkill2(this.skill2);
 
         // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
         this.greenDemonsGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);

@@ -35,6 +35,8 @@ import skillPlantPNGUrl from "/public/skills/plant/texture.png";
 import skillPlantJSONUrl from "/public/skills/plant/texture.json";
 import skillRockPNGUrl from "/public/skills/rock/texture.png";
 import skillRockJSONUrl from "/public/skills/rock/texture.json";
+import skillRock2PNGUrl from "/public/skills/rock2/texture.png";
+import skillRock2JSONUrl from "/public/skills/rock2/texture.json";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -61,6 +63,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.atlas("skill-lightning", skillLightningPNGUrl, skillLightningJSONUrl);
         this.load.atlas("skill-plant", skillPlantPNGUrl, skillPlantJSONUrl);
         this.load.atlas("skill-rock", skillRockPNGUrl, skillRockJSONUrl);
+        this.load.atlas("skill-rock2", skillRock2PNGUrl, skillRock2JSONUrl);
     }
 
     create() {

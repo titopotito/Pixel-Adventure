@@ -8,6 +8,7 @@ export default class Adventurer extends CharacterSprite {
         this.scene.cameras.main.startFollow(this, true);
         this.overlapBody = new OverlapBody({ ...config, character: this });
         this.lastSkill1CastTime = 0;
+        this.lastSkill2CastTime = 0;
     }
 
     get keyboardEventMap() {
@@ -26,6 +27,7 @@ export default class Adventurer extends CharacterSprite {
         keyboardEventMap["attack"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         keyboardEventMap["interact"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyboardEventMap["skill1"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
+        keyboardEventMap["skill2"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
         return keyboardEventMap;
     }
 
@@ -104,6 +106,14 @@ export default class Adventurer extends CharacterSprite {
             if (this.scene.time.now - this.lastSkill1CastTime > this.skill1.cooldown) {
                 this.lastSkill1CastTime = this.scene.time.now;
                 this.skill1.cast();
+            } else {
+                console.log("skill on cooldown");
+            }
+        }
+        if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["skill2"], 500)) {
+            if (this.scene.time.now - this.lastSkill2CastTime > this.skill2.cooldown) {
+                this.lastSkill2CastTime = this.scene.time.now;
+                this.skill2.cast();
             } else {
                 console.log("skill on cooldown");
             }
