@@ -59,7 +59,8 @@ export default class Game extends Phaser.Scene {
         });
 
         this.skill1 = new Skill("freezing-field", this.adventurer);
-        this.skill2 = new Skill("planet-befall", this.adventurer);
+        // this.skill2 = new Skill("planet-befall", this.adventurer);
+        this.skill2 = new Skill("heaven-s-judgement", this.adventurer);
 
         this.adventurer.setSkill1(this.skill1);
         this.adventurer.setSkill2(this.skill2);

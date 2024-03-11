@@ -3,7 +3,7 @@ import { createAnims } from "./create-anims-function";
 const KEY = "skill-fire";
 
 const ACTION_MAP = {
-    cast: { frames: 4, repeat: 0, hasDirection: false },
+    cast: { frames: 4, repeat: -1, hasDirection: false, frameRate: 10 },
 };
 
 function skillFireAnims(anims) {

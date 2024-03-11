@@ -4,6 +4,7 @@ export default class OverlapBody extends Phaser.Physics.Arcade.Sprite {
         config.scene.physics.add.existing(this);
         this.character = config.character;
         this.setBodySize(32, 32);
+        this.addToUpdateList();
     }
 
     preUpdate(t, dt) {

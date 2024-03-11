@@ -110,15 +110,20 @@ export default class Adventurer extends CharacterSprite {
                 console.log("skill on cooldown");
             }
         }
-        if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["skill2"], 500)) {
-            if (this.scene.time.now - this.lastSkill2CastTime > this.skill2.cooldown) {
-                this.lastSkill2CastTime = this.scene.time.now;
+
+        if (this.skill2.skillName !== "flamethrower") {
+            if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["skill2"], 500)) {
+                if (this.scene.time.now - this.lastSkill2CastTime > this.skill2.cooldown) {
+                    this.lastSkill2CastTime = this.scene.time.now;
+                    this.skill2.cast();
+                } else {
+                    console.log("skill on cooldown");
+                }
+            }
+        } else {
+            if (this.scene.input.keyboard.checkDown(this.keyboardEventMap["skill2"], 200)) {
                 this.skill2.cast();
-            } else {
-                console.log("skill on cooldown");
             }
         }
-
-        this.overlapBody.preUpdate(t, dt);
     }
 }

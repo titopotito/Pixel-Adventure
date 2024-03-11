@@ -11,8 +11,8 @@
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
+                "x": 0,
+                "y": 0,
                 "w": 19,
                 "h": 27
             },
@@ -30,19 +30,19 @@
             "frame": {
                 "x": 19,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -53,21 +53,21 @@
         {
             "filename": "cast-3.png",
             "frame": {
-                "x": 38,
+                "x": 40,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -78,21 +78,21 @@
         {
             "filename": "cast-4.png",
             "frame": {
-                "x": 57,
+                "x": 61,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -103,21 +103,21 @@
         {
             "filename": "cast-5.png",
             "frame": {
-                "x": 76,
+                "x": 82,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -128,21 +128,21 @@
         {
             "filename": "cast-6.png",
             "frame": {
-                "x": 95,
+                "x": 103,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -153,21 +153,21 @@
         {
             "filename": "cast-7.png",
             "frame": {
-                "x": 114,
+                "x": 124,
                 "y": 0,
-                "w": 19,
+                "w": 21,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 21,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 21,
                 "h": 28
             },
             "pivot": {
@@ -178,25 +178,25 @@
         {
             "filename": "cast-8.png",
             "frame": {
-                "x": 133,
+                "x": 145,
                 "y": 0,
-                "w": 19,
+                "w": 7,
                 "h": 27
             },
             "rotated": false,
             "trimmed": true,
             "spriteSourceSize": {
-                "x": 1,
-                "y": 1,
-                "w": 19,
+                "x": 0,
+                "y": 0,
+                "w": 7,
                 "h": 27
             },
             "sourceSize": {
-                "w": 19,
+                "w": 7,
                 "h": 28
             },
             "pivot": {
-                "x": 0.5,
+                "x": 1,
                 "y": 0.5
             }
         }
