@@ -1,5 +1,5 @@
 import CharacterSprite from "./character-sprite.js";
-import AttackEffect from "./attack-effect.js";
+import BasicAttack from "../skills/basic-attack.js";
 
 export default class Enemy extends CharacterSprite {
     constructor(config) {
@@ -11,6 +11,7 @@ export default class Enemy extends CharacterSprite {
         this.attackRange = 24;
         this.detectionRange = 80;
         this.atk = 1;
+        this.basicAttackEffect = new BasicAttack(this, "scratch-scratch", 0.5, 12);
     }
 
     die() {
@@ -38,13 +39,7 @@ export default class Enemy extends CharacterSprite {
     attack() {
         // play attack animation and scratch effect then enter attacking state
         super.attack();
-        const scratchEffect = new AttackEffect(this, "scratch", 0.5);
-        scratchEffect.play();
-
-        // set scratch effect to collide with target
-        this.scene.physics.add.collider(scratchEffect, this.target, (scratch, target) => {
-            target.takeDamage(this.atk);
-        });
+        this.basicAttackEffect.cast();
 
         // prevent enemy sprite from moving while attack animation is playing
         this.setVelocity(0);
@@ -56,7 +51,6 @@ export default class Enemy extends CharacterSprite {
         this.scene.time.addEvent({
             delay: 200,
             callback: () => {
-                scratchEffect.destroy();
                 this.isAttacking = false;
                 this.idle();
             },

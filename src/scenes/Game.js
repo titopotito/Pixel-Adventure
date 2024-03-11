@@ -1,7 +1,7 @@
 import Phaser from "phaser";
-import Adventurer from "../models/adventurer.js";
-import Enemy from "../models/enemy.js";
-import Treasure from "../models/treasure.js";
+import Adventurer from "../models/characters/adventurer.js";
+import Enemy from "../models/characters/enemy.js";
+import TreasureChest from "../models/items/treasure-chest.js";
 import { adventurerAnims } from "../anims/adventurer-anims.js";
 import { greenDemonAnims } from "../anims/green-demon-anims.js";
 import { treasureChestAnims } from "../anims/treasure-chest-anims.js";
@@ -14,7 +14,9 @@ import { skillLightningAnims } from "../anims/skill-lightning-anims.js";
 import { skillPlantAnims } from "../anims/skill-plant-anims.js";
 import { skillRockAnims } from "../anims/skill-rock-anims.js";
 import { skillRock2Anims } from "../anims/skill-rock2-anims.js";
-import Skill from "../models/skills.js";
+import FreezingField from "../models/skills/freezing-field.js";
+import BasicAttack from "../models/skills/basic-attack.js";
+import HeavensJudgement from "../models/skills/heaven-s-judgement.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -53,15 +55,15 @@ export default class Game extends Phaser.Scene {
         // Creating Adventurer Object.
         this.adventurer = new Adventurer({
             scene: this,
-            positionX: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
-            positionY: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
+            x: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,
+            y: CHARACTER_STARTING_POSITION.y * TILE_SIZE.h,
             spriteName: "adventurer",
         });
 
-        this.skill1 = new Skill("freezing-field", this.adventurer);
-        // this.skill2 = new Skill("planet-befall", this.adventurer);
-        this.skill2 = new Skill("heaven-s-judgement", this.adventurer);
-
+        this.basicAttack = new BasicAttack(this.adventurer, "slash-slash");
+        this.skill1 = new FreezingField(this.adventurer);
+        this.skill2 = new HeavensJudgement(this.adventurer);
+        this.adventurer.setBasicAttack(this.basicAttack);
         this.adventurer.setSkill1(this.skill1);
         this.adventurer.setSkill2(this.skill2);
 
@@ -71,8 +73,8 @@ export default class Game extends Phaser.Scene {
         greenDemonLayer.objects.forEach((greenDemonObj) => {
             let config = {
                 scene: this,
-                positionX: greenDemonObj.x,
-                positionY: greenDemonObj.y,
+                x: greenDemonObj.x,
+                y: greenDemonObj.y,
                 spriteName: "green-demon",
             };
             const greenDemon = new Enemy(config);
@@ -86,20 +88,20 @@ export default class Game extends Phaser.Scene {
         treasureChestLayer.objects.forEach((treasureChestObj) => {
             let config = {
                 scene: this,
-                positionX: treasureChestObj.x,
-                positionY: treasureChestObj.y,
+                x: treasureChestObj.x,
+                y: treasureChestObj.y,
                 spriteName: "treasure-chest",
             };
-            this.treasureChestGroup.add(new Treasure(config));
+            this.treasureChestGroup.add(new TreasureChest(config));
         });
 
-        this.adventurer.setAttackCollision(this.greenDemonsGroup);
+        this.adventurer.setTarget(this.greenDemonsGroup);
 
         this.physics.add.collider(this.adventurer, this.greenDemonsGroup);
         this.physics.add.collider(this.adventurer, this.treasureChestGroup);
         this.physics.add.collider(this.greenDemonsGroup, this.greenDemonsGroup);
-        this.physics.add.overlap(this.adventurer.overlapBody, this.treasureChestGroup, (body, treasure) =>
-            this.adventurer.interact(treasure)
+        this.physics.add.overlap(this.adventurer.overlapBody, this.treasureChestGroup, (body, treasureChest) =>
+            this.adventurer.interact(treasureChest)
         );
 
         LAYERS.forEach((item) => {

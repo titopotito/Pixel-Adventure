@@ -1,10 +1,11 @@
-import GameSprite from "./game-sprite.js";
+import Phaser from "phaser";
 
 const FROZEN_COLOR = "0x0000FF";
 
-export default class CharacterSprite extends GameSprite {
+export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
     constructor(config, stats = { level: 1, atk: 5, maxHP: 100 }) {
-        super(config);
+        super(config.scene, config.x, config.y, config.spriteName);
+        config.scene.physics.add.existing(this);
         this.body.collideWorldBounds = true;
         this.speed = 100;
         this.currentDirection = "down";
@@ -15,6 +16,9 @@ export default class CharacterSprite extends GameSprite {
         this.isAttacking = false;
         this.isAlive = true;
         this.isFrozen = false;
+        this.addToDisplayList();
+        this.addToUpdateList();
+        this.setDepth(1);
     }
 
     get stats() {
@@ -23,12 +27,6 @@ export default class CharacterSprite extends GameSprite {
             atk: this.atk,
             maxHP: this.maxHP,
         };
-    }
-
-    set stats(stats) {
-        this.level = stats.level;
-        this.atk = stats.atk;
-        this.maxHP = stats.maxHP;
     }
 
     idle() {

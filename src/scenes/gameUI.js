@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import HealthBarUI from "../models/health-bar";
+import HealthBarUI from "../models/ui/health-bar";
 
 export default class GameUI extends Phaser.Scene {
     constructor() {
