@@ -52,7 +52,6 @@ export default class Game extends Phaser.Scene {
         skillRockAnims(this.anims);
         skillRock2Anims(this.anims);
 
-        // Creating Adventurer Object.
         this.adventurer = new Adventurer({
             scene: this,
             x: CHARACTER_STARTING_POSITION.x * TILE_SIZE.w,

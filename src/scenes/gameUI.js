@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import HealthBarUI from "../models/ui/health-bar";
+import EnemyHealthBar from "../models/ui/enemy-health-bar";
+import UIBar from "../models/ui/ui-bar";
 
 export default class GameUI extends Phaser.Scene {
     constructor() {
@@ -17,24 +18,21 @@ export default class GameUI extends Phaser.Scene {
         this.physics.world.bounds.width = this.sys.game.config.width * TILE_SIZE.w;
         this.physics.world.bounds.height = this.sys.game.config.height * TILE_SIZE.h;
         this.cameras.main.startFollow(this.data.adventurer, true);
-        this.adventurerHpBar = new HealthBarUI(this, this.data.adventurer, {
-            width: 100,
-            height: 6,
-            offsetX: 0,
-            offsetY: 100,
-            withText: true,
-        });
+
+        this.adventurerHpBar = new UIBar(this, this.data.adventurer, 8, 8, "health-bar");
+        this.adventurerManaBar = new UIBar(this, this.data.adventurer, 8, 22, "mana-bar");
 
         this.greenDemonsHpBarGroup = [];
         this.data.greenDemonsGroup.children.each((greenDemon) => {
             this.greenDemonsHpBarGroup.push(
-                new HealthBarUI(this, greenDemon, { width: 20, height: 2, offsetX: 0, offsetY: -12 })
+                new EnemyHealthBar(this, greenDemon, { scale: 0.3, offsetX: 0, offsetY: -16 })
             );
         });
     }
 
     update(t, dt) {
         this.adventurerHpBar.preUpdate(t, dt);
+        this.adventurerManaBar.preUpdate(t, dt);
         this.greenDemonsHpBarGroup.forEach((hPBarUI) => hPBarUI.preUpdate(t, dt));
     }
 }

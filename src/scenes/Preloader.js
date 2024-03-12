@@ -37,6 +37,9 @@ import skillRockPNGUrl from "/public/skills/rock/texture.png";
 import skillRockJSONUrl from "/public/skills/rock/texture.json";
 import skillRock2PNGUrl from "/public/skills/rock2/texture.png";
 import skillRock2JSONUrl from "/public/skills/rock2/texture.json";
+import healthBarPNGUrl from "/public/ui/health-bar.png";
+import manaBarPNGUrl from "/public/ui/mana-bar.png";
+import borderBarPNGUrl from "/public/ui/border-bar.png";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -46,6 +49,11 @@ export default class Preloader extends Phaser.Scene {
     preload() {
         this.load.image("tileset", tilesetPNGUrl);
         this.load.tilemapTiledJSON("tileset", tilesetJSONUrl);
+
+        this.load.image("health-bar", healthBarPNGUrl);
+        this.load.image("mana-bar", manaBarPNGUrl);
+        this.load.image("border-bar", borderBarPNGUrl);
+
         this.load.atlas("adventurer", adventurerPNGUrl, adventurerJSONUrl);
         this.load.atlas("green-demon", greenDemonPNGUrl, greenDemonJSONUrl);
         this.load.atlas("red-demon", redDemonPNGUrl, redDemonJSONUrl);
