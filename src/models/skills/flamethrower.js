@@ -1,8 +1,9 @@
 import Phaser from "phaser";
+import eventsCenter from "../events/events-center";
 import * as utilFns from "../utils/sprite-util-functions";
 
 export default class Flamethrower {
-    constructor(caster) {
+    constructor(caster, keyCode = null) {
         this.caster = caster;
         this.scene = caster.scene;
         this.duration = 6000;
@@ -10,6 +11,7 @@ export default class Flamethrower {
         this.offsetFromCaster = 16;
         this.lastCastTime = 0;
         this.isOnCastState = false;
+        this.keyCode = keyCode;
     }
 
     static get name() {
@@ -49,6 +51,7 @@ export default class Flamethrower {
         if (!this.isOnCastState && !this.isOnCooldown) {
             this.isOnCastState = true;
             this.lastCastTime = this.scene.time.now;
+            eventsCenter.emit(this.keyCode, this.cooldown);
         } else if (this.isOnCastState) {
             const position = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
             const fireSprite = new Phaser.Physics.Arcade.Sprite(

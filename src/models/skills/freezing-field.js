@@ -1,13 +1,15 @@
 import Phaser from "phaser";
+import eventsCenter from "../events/events-center";
 import * as utilFns from "../utils/sprite-util-functions";
 
 export default class FreezingField {
-    constructor(caster) {
+    constructor(caster, keyCode = null) {
         this.caster = caster;
         this.scene = caster.scene;
         this.offsetFromCaster = 32;
         this.cooldown = 5000;
         this.lastCastTime = 0;
+        this.keyCode = keyCode;
     }
 
     static get name() {
@@ -47,6 +49,7 @@ export default class FreezingField {
         if (this.isOnCooldown) return;
 
         this.lastCastTime = this.scene.time.now;
+        eventsCenter.emit(this.keyCode, this.cooldown);
 
         const spawnPositions = this.getIceSpawnPositions();
         const duration = 400;

@@ -25,9 +25,9 @@ export default class GameUI extends Phaser.Scene {
         this.portrait.setScrollFactor(0, 0);
         this.portrait.setOrigin(0);
 
-        this.skill2Btn = new HudBtn(this, 328, 144, "fire-logo");
-        this.skill1Btn = new HudBtn(this, 328, 176, "rock-logo");
-        this.atkBtn = new HudBtn(this, 328, 208, "basic-atk-logo");
+        this.skill2Btn = new HudBtn(this, 328, 144, "fire-logo", "keydown-L");
+        this.skill1Btn = new HudBtn(this, 328, 176, "rock-logo", "keydown-K");
+        this.atkBtn = new HudBtn(this, 328, 208, "basic-atk-logo", "keydown-J");
 
         this.adventurerHpBar = new UIBar(this, this.data.adventurer, 40, 2, "health-bar");
         this.adventurerManaBar = new UIBar(this, this.data.adventurer, 40, 16, "mana-bar");

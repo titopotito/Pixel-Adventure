@@ -1,10 +1,11 @@
 import Phaser from "phaser";
 import NightEffect from "../effects/night-effect";
 import OverlapBody from "../body/overlap-body";
+import eventsCenter from "../events/events-center";
 import * as utilFns from "../utils/sprite-util-functions";
 
 export default class HeavensJudgement {
-    constructor(caster) {
+    constructor(caster, keyCode = null) {
         this.caster = caster;
         this.scene = caster.scene;
         this.lastLightningStrikeTime = 0;
@@ -13,6 +14,7 @@ export default class HeavensJudgement {
         this.range = { x: 240, y: 240 };
         this.cooldown = 20000;
         this.lastCastTime = 0;
+        this.keyCode = keyCode;
     }
 
     static get name() {
@@ -58,6 +60,7 @@ export default class HeavensJudgement {
         if (this.isOnCooldown) return;
 
         this.lastCastTime = this.scene.time.now;
+        eventsCenter.emit(this.keyCode, this.cooldown);
 
         const nightEffect = new NightEffect(this.scene);
         const detectionRange = new OverlapBody({

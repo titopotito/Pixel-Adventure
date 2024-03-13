@@ -1,5 +1,6 @@
 import CharacterSprite from "./character-sprite.js";
 import OverlapBody from "../body/overlap-body.js";
+import eventsCenter from "../events/events-center.js";
 
 export default class Adventurer extends CharacterSprite {
     constructor(config) {
@@ -43,10 +44,12 @@ export default class Adventurer extends CharacterSprite {
 
     setSkill1(skill) {
         this.skill1 = skill;
+        this.skill1.keyCode = "keydown-K";
     }
 
     setSkill2(skill) {
         this.skill2 = skill;
+        this.skill2.keyCode = "keydown-L";
     }
 
     preUpdate(t, dt) {
@@ -70,6 +73,7 @@ export default class Adventurer extends CharacterSprite {
         // If attack button is continually pressed down, sprite will only attack every 500ms
         if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["attack"], 500)) {
             this.attack();
+            eventsCenter.emit("keydown-J", 200);
 
             // Attacking state will end after 200ms
             this.scene.time.addEvent({
