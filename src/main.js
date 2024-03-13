@@ -16,6 +16,10 @@ const config = {
     },
     scene: [Preloader, Game, GameUI],
     zoom: 2,
+    pixelArt: true,
+    antialias: false,
+    autoRound: true,
+    roundPixels: true,
 };
 
 export default new Phaser.Game(config);
