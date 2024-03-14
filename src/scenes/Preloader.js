@@ -47,6 +47,10 @@ import iceLogoPNGUrl from "/public/ui/ice-logo.png";
 import lightningLogoPNGUrl from "/public/ui/lightning-logo.png";
 import fireLogoPNGUrl from "/public/ui/fire-logo.png";
 import rockLogoPNGUrl from "/public/ui/rock-logo.png";
+import hpPotionPNGUrl from "/public/items/potion/hp-potion.png";
+import mpPotionPNGUrl from "/public/items/potion/mp-potion.png";
+import invBorderPNGUrl from "/public/ui/inv-border.png";
+import goldCountPNGUrl from "/public/ui/gold-count.png";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -60,6 +64,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("health-bar", healthBarPNGUrl);
         this.load.image("mana-bar", manaBarPNGUrl);
         this.load.image("border-bar", borderBarPNGUrl);
+        this.load.image("inv-border", invBorderPNGUrl);
         this.load.image("adventurer-portrait", adventurerPortraitPNGUrl);
         this.load.image("btn-bg", btnBgPNGUrl);
         this.load.image("basic-atk-logo", basicAtkLogoPNGUrl);
@@ -67,6 +72,9 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("lightning-logo", lightningLogoPNGUrl);
         this.load.image("fire-logo", fireLogoPNGUrl);
         this.load.image("rock-logo", rockLogoPNGUrl);
+        this.load.image("hp-potion", hpPotionPNGUrl);
+        this.load.image("mp-potion", mpPotionPNGUrl);
+        this.load.image("gold-count", goldCountPNGUrl);
 
         this.load.atlas("adventurer", adventurerPNGUrl, adventurerJSONUrl);
         this.load.atlas("green-demon", greenDemonPNGUrl, greenDemonJSONUrl);

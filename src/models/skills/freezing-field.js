@@ -11,6 +11,7 @@ export default class FreezingField {
         this.isOnCooldown = false;
         this.keyCode = keyCode;
         this.iceSpriteDuration = 400;
+        this.mpCost = 10;
     }
 
     static get name() {

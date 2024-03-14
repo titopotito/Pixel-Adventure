@@ -15,6 +15,7 @@ export default class HeavensJudgement {
         this.isOnCooldown = false;
         this.range = { x: 240, y: 240 };
         this.keyCode = keyCode;
+        this.mpCost = 20;
     }
 
     static get name() {

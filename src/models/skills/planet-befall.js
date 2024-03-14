@@ -10,6 +10,7 @@ export default class PlanetBefall {
         this.cooldown = 5000;
         this.isOnCooldown = false;
         this.keyCode = keyCode;
+        this.mpCost = 10;
     }
 
     static get name() {

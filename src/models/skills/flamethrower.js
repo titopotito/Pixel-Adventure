@@ -12,6 +12,7 @@ export default class Flamethrower {
         this.isOnCastState = false;
         this.isOnCooldown = false;
         this.keyCode = keyCode;
+        this.mpCost = 1;
     }
 
     static get name() {

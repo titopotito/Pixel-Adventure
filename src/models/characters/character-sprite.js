@@ -9,9 +9,9 @@ export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
         this.body.collideWorldBounds = true;
         this.speed = 100;
         this.currentDirection = "down";
-        this.level = stats.level;
-        this.atk = stats.atk;
-        this.maxHP = stats.maxHP;
+        this.level = 1;
+        this.atk = 5;
+        this.maxHP = 100;
         this.currentHP = this.maxHP;
         this.isAttacking = false;
         this.isAlive = true;
@@ -19,14 +19,6 @@ export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
         this.addToDisplayList();
         this.addToUpdateList();
         this.setDepth(1);
-    }
-
-    get stats() {
-        return {
-            level: this.level,
-            atk: this.atk,
-            maxHP: this.maxHP,
-        };
     }
 
     idle() {

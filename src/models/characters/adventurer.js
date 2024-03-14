@@ -7,6 +7,8 @@ export default class Adventurer extends CharacterSprite {
         super(config);
         this.scene.cameras.main.startFollow(this, true);
         this.overlapBody = new OverlapBody({ ...config, character: this });
+        this.maxMP = 100;
+        this.currentMP = this.maxMP;
     }
 
     get keyboardKeyMap() {
@@ -23,7 +25,7 @@ export default class Adventurer extends CharacterSprite {
     }
 
     interact(treasureChest) {
-        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["interact"], 100)) {
+        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["interact"], 2000)) {
             treasureChest.open();
         }
     }
@@ -31,6 +33,18 @@ export default class Adventurer extends CharacterSprite {
     attack() {
         super.attack();
         this.basicAttack.cast();
+    }
+
+    consumeMP(cost) {
+        this.currentMP -= cost;
+    }
+
+    hasEnoughMP(cost) {
+        if (this.currentMP >= cost) return true;
+        else {
+            console.log("not enough MP");
+            return false;
+        }
     }
 
     // set targets that will be hit by the adventurers attacks
@@ -85,11 +99,17 @@ export default class Adventurer extends CharacterSprite {
         }
 
         if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["skill1"], 200)) {
-            this.skill1.cast();
+            if (!this.skill1.isOnCooldown && this.hasEnoughMP(this.skill1.mpCost)) {
+                this.consumeMP(this.skill1.mpCost);
+                this.skill1.cast();
+            }
         }
 
         if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["skill2"], 200)) {
-            this.skill2.cast();
+            if (!this.skill2.isOnCooldown && this.hasEnoughMP(this.skill2.mpCost)) {
+                this.consumeMP(this.skill2.mpCost);
+                this.skill2.cast();
+            }
         }
     }
 }

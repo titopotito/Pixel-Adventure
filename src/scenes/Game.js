@@ -17,6 +17,7 @@ import { skillRock2Anims } from "../anims/skill-rock2-anims.js";
 import FreezingField from "../models/skills/freezing-field.js";
 import BasicAttack from "../models/skills/basic-attack.js";
 import HeavensJudgement from "../models/skills/heaven-s-judgement.js";
+import Flamethrower from "../models/skills/flamethrower.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -61,7 +62,7 @@ export default class Game extends Phaser.Scene {
 
         this.basicAttack = new BasicAttack(this.adventurer, "slash-slash");
         this.skill1 = new FreezingField(this.adventurer);
-        this.skill2 = new HeavensJudgement(this.adventurer);
+        this.skill2 = new Flamethrower(this.adventurer);
         this.adventurer.setBasicAttack(this.basicAttack);
         this.adventurer.setSkill1(this.skill1);
         this.adventurer.setSkill2(this.skill2);
