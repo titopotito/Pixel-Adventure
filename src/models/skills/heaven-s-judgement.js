@@ -8,12 +8,12 @@ export default class HeavensJudgement {
     constructor(caster, keyCode = null) {
         this.caster = caster;
         this.scene = caster.scene;
-        this.lastLightningStrikeTime = 0;
-        this.delayBetweenLightningStrike = 2000;
         this.duration = 12000;
-        this.range = { x: 240, y: 240 };
+        this.delayBetweenLightningStrike = 2000;
+        this.isLightningStrikeOnCooldown = false;
         this.cooldown = 20000;
-        this.lastCastTime = 0;
+        this.isOnCooldown = false;
+        this.range = { x: 240, y: 240 };
         this.keyCode = keyCode;
     }
 
@@ -44,48 +44,52 @@ export default class HeavensJudgement {
         };
     }
 
-    get isOnCooldown() {
-        const dt = this.scene.time.now - this.lastCastTime;
-        if (dt > this.cooldown) return false;
-        return true;
+    startCooldown() {
+        this.isOnCooldown = true;
+        this.scene.time.addEvent({ delay: this.cooldown, callback: () => (this.isOnCooldown = false) });
+        eventsCenter.emit(`${this.keyCode}-start-cooldown`, this.cooldown);
     }
 
-    get isLightningStrikeOnCooldown() {
-        const dt = this.scene.time.now - this.lastLightningStrikeTime;
-        if (dt > this.delayBetweenLightningStrike) return false;
-        return true;
+    startLightningStrikeCooldown() {
+        this.isLightningStrikeOnCooldown = true;
+        this.scene.time.addEvent({
+            delay: this.delayBetweenLightningStrike,
+            callback: () => (this.isLightningStrikeOnCooldown = false),
+        });
     }
 
     cast() {
         if (this.isOnCooldown) return;
 
-        this.lastCastTime = this.scene.time.now;
-        eventsCenter.emit(this.keyCode, this.cooldown);
+        this.startCooldown();
 
         const nightEffect = new NightEffect(this.scene);
         const detectionRange = new OverlapBody({
             scene: this.scene,
             character: this.caster,
-            positionX: this.caster.x,
-            positionY: this.caster.y,
-        });
-        detectionRange.addToUpdateList();
-        detectionRange.setBodySize(this.range.x, this.range.y);
+            y: this.caster.x,
+            x: this.caster.y,
+        })
+            .addToUpdateList()
+            .setBodySize(this.range.x, this.range.y);
 
         this.scene.physics.add.overlap(detectionRange, this.caster.target, (detectionRange, target) => {
             if (!this.isLightningStrikeOnCooldown) {
-                this.lastLightningStrikeTime = this.scene.time.now;
+                this.startLightningStrikeCooldown();
+
                 let lightningSprite = new Phaser.Physics.Arcade.Sprite(
                     this.scene,
                     target.x,
                     target.y,
                     HeavensJudgement.spriteName
-                );
-                lightningSprite.addToDisplayList();
-                lightningSprite.setDepth(2);
-                lightningSprite.setScale(1.5);
+                )
+                    .addToDisplayList()
+                    .setDepth(2)
+                    .setScale(1.5);
+
                 lightningSprite.preFX.addGlow();
                 lightningSprite.postFX.addGlow();
+
                 nightEffect.flash(100);
 
                 this.scene.physics.add.collider(lightningSprite, target, (lightningSprite, target) => {

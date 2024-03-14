@@ -3,37 +3,30 @@ export default class UIBar {
         this.scene = scene;
         this.character = character;
         this.type = type;
-        this.bar = scene.add.sprite(x, y, type);
-        this.border = scene.add.sprite(x, y, "border-bar");
-
-        this.bar.setScrollFactor(0, 0);
-        this.border.setScrollFactor(0, 0);
-        this.bar.setOrigin(0, 0);
-        this.border.setOrigin(0, 0);
-        this.bar.setDepth(3);
-        this.border.setDepth(3);
-
-        this.bar.maxWidth = this.bar.displayWidth;
+        this.border = scene.add.sprite(x, y, "border-bar").setScrollFactor(0, 0).setOrigin(0, 0).setDepth(3);
+        this.bar = scene.add.sprite(x, y, type).setScrollFactor(0, 0).setOrigin(0, 0).setDepth(3);
+        this.maxWidth = this.bar.displayWidth;
         this.setText();
     }
 
     setText() {
         if (this.type === "health-bar") {
-            this.hpText = this.scene.add.text(
-                this.bar.x + this.bar.maxWidth / 2,
-                this.bar.y + this.bar.displayHeight / 2,
-                `${this.character.currentHP}/${this.character.maxHP}`,
-                { fontSize: 10 }
-            );
-            this.hpText.setScrollFactor(0, 0);
-            this.hpText.setDepth(3);
-            this.hpText.setOrigin(0.5, 0.5);
+            this.hpText = this.scene.add
+                .text(
+                    this.bar.x + this.maxWidth / 2,
+                    this.bar.y + this.bar.displayHeight / 2,
+                    `${this.character.currentHP}/${this.character.maxHP}`,
+                    { fontSize: 10 }
+                )
+                .setScrollFactor(0, 0)
+                .setDepth(3)
+                .setOrigin(0.5, 0.5);
         }
     }
 
     get newHpWidth() {
         const hpPercent = this.character.currentHP / this.character.maxHP;
-        const newHpWidth = this.bar.maxWidth * hpPercent;
+        const newHpWidth = this.maxWidth * hpPercent;
         return newHpWidth;
     }
 

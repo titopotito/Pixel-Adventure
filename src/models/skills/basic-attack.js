@@ -11,18 +11,15 @@ export default class BasicAttack {
     }
 
     cast() {
-        const position = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
-        const attackEffectSprite = new Phaser.Physics.Arcade.Sprite(
-            this.scene,
-            position.x,
-            position.y,
-            "basic-attack-sprite"
-        );
-        attackEffectSprite.setScale(this.scale);
-        this.scene.physics.add.overlap(attackEffectSprite, this.caster.target, (attackEffectSprite, target) => {
+        const p = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
+        const basicAtkSprite = new Phaser.Physics.Arcade.Sprite(this.scene, p.x, p.y, "basic-attack-sprite");
+        basicAtkSprite.setScale(this.scale);
+
+        this.scene.physics.add.overlap(basicAtkSprite, this.caster.target, (basicAtkSprite, target) => {
             target.takeDamage(this.caster.atk);
         });
-        utilFns.playAnimationForManyThenDestroy(this.scene, [attackEffectSprite], this.animationKey);
-        utilFns.rotateBaseOnCharacterDirection(this.caster, attackEffectSprite, -45);
+
+        utilFns.playAnimationForManyThenDestroy(this.scene, [basicAtkSprite], this.animationKey);
+        utilFns.rotateBaseOnCharacterDirection(this.caster, basicAtkSprite, -45);
     }
 }

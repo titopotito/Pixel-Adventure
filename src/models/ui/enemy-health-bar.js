@@ -2,18 +2,11 @@ export default class EnemyHealthBar {
     constructor(scene, character, config) {
         this.scene = scene;
         this.character = character;
-        this.bar = scene.add.sprite(0, 0, "health-bar");
-        this.border = scene.add.sprite(0, 0, "border-bar");
+        this.border = scene.add.sprite(0, 0, "border-bar").setScale(config.scale).setDepth(3);
+        this.bar = scene.add.sprite(0, 0, "health-bar").setOrigin(0, 0).setScale(config.scale).setDepth(3);
+        this.maxWidth = this.bar.displayWidth;
         this.offsetX = config.offsetX;
         this.offsetY = config.offsetY;
-
-        this.bar.setOrigin(0, 0);
-        this.bar.setScale(config.scale);
-        this.border.setScale(config.scale);
-        this.bar.setDepth(3);
-        this.border.setDepth(3);
-
-        this.bar.maxWidth = this.bar.displayWidth;
     }
 
     get newPosition() {
@@ -26,7 +19,7 @@ export default class EnemyHealthBar {
 
     get newHpWidth() {
         const hpPercent = this.character.currentHP / this.character.maxHP;
-        const newHpWidth = this.bar.maxWidth * hpPercent;
+        const newHpWidth = this.maxWidth * hpPercent;
         return newHpWidth;
     }
 

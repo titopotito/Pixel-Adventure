@@ -73,7 +73,7 @@ export default class Adventurer extends CharacterSprite {
         // If attack button is continually pressed down, sprite will only attack every 500ms
         if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["attack"], 500)) {
             this.attack();
-            eventsCenter.emit("keydown-J", 200);
+            eventsCenter.emit("keydown-J-start-cooldown", 100);
 
             // Attacking state will end after 200ms
             this.scene.time.addEvent({

@@ -8,7 +8,7 @@ export default class PlanetBefall {
         this.scene = caster.scene;
         this.offsetFromCaster = 68;
         this.cooldown = 5000;
-        this.lastCastTime = 0;
+        this.isOnCooldown = false;
         this.keyCode = keyCode;
     }
 
@@ -39,17 +39,16 @@ export default class PlanetBefall {
         };
     }
 
-    get isOnCooldown() {
-        const dt = this.scene.time.now - this.lastCastTime;
-        if (dt > this.cooldown) return false;
-        return true;
+    startCooldown() {
+        this.isOnCooldown = true;
+        this.scene.time.addEvent({ delay: this.cooldown, callback: () => (this.isOnCooldown = false) });
+        eventsCenter.emit(`${this.keyCode}-start-cooldown`, this.cooldown);
     }
 
     cast() {
         if (this.isOnCooldown) return;
 
-        this.lastCastTime = this.scene.time.now;
-        eventsCenter.emit(this.keyCode, this.cooldown);
+        this.startCooldown();
 
         const position = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
         const rock2Sprite = new Phaser.Physics.Arcade.Sprite(
@@ -57,10 +56,11 @@ export default class PlanetBefall {
             position.x,
             position.y,
             PlanetBefall.spriteName
-        );
-        rock2Sprite.setScale(4);
-        rock2Sprite.setDepth(2);
+        )
+            .setScale(4)
+            .setDepth(2);
 
+        // time event to delay the collision of the sprite and enemy
         this.scene.time.addEvent({
             delay: 800,
             callback: () => {
@@ -69,6 +69,7 @@ export default class PlanetBefall {
                 });
             },
         });
+
         utilFns.playAnimationForManyThenDestroy(this.scene, [rock2Sprite], PlanetBefall.animationKey, 1100);
     }
 }

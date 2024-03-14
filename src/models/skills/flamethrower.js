@@ -9,8 +9,8 @@ export default class Flamethrower {
         this.duration = 6000;
         this.cooldown = 6000;
         this.offsetFromCaster = 16;
-        this.lastCastTime = 0;
         this.isOnCastState = false;
+        this.isOnCooldown = false;
         this.keyCode = keyCode;
     }
 
@@ -41,39 +41,41 @@ export default class Flamethrower {
         };
     }
 
-    get isOnCooldown() {
-        const dt = this.scene.time.now - this.lastCastTime;
-        if (dt > this.cooldown) return false;
-        return true;
+    startCooldown() {
+        this.isOnCooldown = true;
+        this.scene.time.addEvent({ delay: this.cooldown, callback: () => (this.isOnCooldown = false) });
+        eventsCenter.emit(`${this.keyCode}-start-cooldown`, this.cooldown);
+    }
+
+    enterCastState() {
+        this.isOnCastState = true;
+        eventsCenter.emit(`${this.keyCode}-set-active`, this.duration);
+
+        this.scene.time.addEvent({
+            delay: this.duration,
+            callback: () => {
+                this.isOnCastState = false;
+                this.startCooldown();
+            },
+        });
     }
 
     cast() {
-        if (!this.isOnCastState && !this.isOnCooldown) {
-            this.isOnCastState = true;
-            this.lastCastTime = this.scene.time.now;
-            eventsCenter.emit(this.keyCode, this.cooldown);
-        } else if (this.isOnCastState) {
-            const position = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
-            const fireSprite = new Phaser.Physics.Arcade.Sprite(
-                this.scene,
-                position.x,
-                position.y,
-                Flamethrower.spriteName
-            );
+        if (!this.isOnCastState && !this.isOnCooldown) this.enterCastState();
+        else if (this.isOnCastState) {
+            const p = utilFns.getSpawnPosition(this.caster, this.offsetFromCaster);
+            const fireSprite = new Phaser.Physics.Arcade.Sprite(this.scene, p.x, p.y, Flamethrower.spriteName);
+
             this.scene.physics.add.overlap(fireSprite, this.caster.target, (fireSprite, target) => {
                 target.takeDamage(this.caster.atk * Flamethrower.dmgTable["lvl-1"]);
             });
+
             utilFns.playAnimationForManyThenDestroy(this.scene, [fireSprite], Flamethrower.animationKey, 1000);
             utilFns.rotateBaseOnCharacterDirection(this.caster, fireSprite, 90);
             utilFns.setVelocityBaseOnCharacterDirection(this.caster, fireSprite, 100);
             utilFns.increaseSizeOvertime(fireSprite, 0.05);
-            fireSprite.setBodySize(16);
-            fireSprite.setDepth(2);
 
-            this.scene.time.addEvent({
-                delay: this.duration,
-                callback: () => (this.isOnCastState = false),
-            });
+            fireSprite.setBodySize(16).setDepth(2);
         }
     }
 }

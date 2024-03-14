@@ -8,8 +8,9 @@ export default class FreezingField {
         this.scene = caster.scene;
         this.offsetFromCaster = 32;
         this.cooldown = 5000;
-        this.lastCastTime = 0;
+        this.isOnCooldown = false;
         this.keyCode = keyCode;
+        this.iceSpriteDuration = 400;
     }
 
     static get name() {
@@ -39,29 +40,22 @@ export default class FreezingField {
         };
     }
 
-    get isOnCooldown() {
-        const dt = this.scene.time.now - this.lastCastTime;
-        if (dt > this.cooldown) return false;
-        return true;
+    startCooldown() {
+        this.isOnCooldown = true;
+        this.scene.time.addEvent({ delay: this.cooldown, callback: () => (this.isOnCooldown = false) });
+        eventsCenter.emit(`${this.keyCode}-start-cooldown`, this.cooldown);
     }
 
     cast() {
         if (this.isOnCooldown) return;
 
-        this.lastCastTime = this.scene.time.now;
-        eventsCenter.emit(this.keyCode, this.cooldown);
+        this.startCooldown();
 
         const spawnPositions = this.getIceSpawnPositions();
-        const duration = 400;
-
-        const iceSprites = spawnPositions.map((position) => {
-            let iceSprite = new Phaser.Physics.Arcade.Sprite(
-                this.scene,
-                position.x,
-                position.y,
-                FreezingField.spriteName
-            );
+        const iceSprites = spawnPositions.map((p) => {
+            let iceSprite = new Phaser.Physics.Arcade.Sprite(this.scene, p.x, p.y, FreezingField.spriteName);
             iceSprite.setDepth(2);
+
             this.scene.physics.add.collider(iceSprite, this.caster.target, (iceSprite, target) => {
                 target.takeDamage(this.caster.atk * FreezingField.dmgTable["lvl-1"]);
                 target.freeze();
@@ -70,13 +64,18 @@ export default class FreezingField {
         });
 
         utilFns
-            .playAnimationForManyThenDestroy(this.scene, iceSprites.slice(0, 3), FreezingField.animationKey, duration)
+            .playAnimationForManyThenDestroy(
+                this.scene,
+                iceSprites.slice(0, 3),
+                FreezingField.animationKey,
+                this.iceSpriteDuration
+            )
             .then((sprites) => {
                 return utilFns.playAnimationForManyThenDestroy(
                     this.scene,
                     iceSprites.slice(3, 6),
                     FreezingField.animationKey,
-                    duration
+                    this.iceSpriteDuration
                 );
             })
             .then((sprites) => {
@@ -84,7 +83,7 @@ export default class FreezingField {
                     this.scene,
                     iceSprites.slice(6, 9),
                     FreezingField.animationKey,
-                    duration
+                    this.iceSpriteDuration
                 );
             });
     }
