@@ -5,8 +5,20 @@ export default class HudBtn {
     constructor(scene, x, y, logoKey, keyboardKey) {
         this.scene = scene;
         this.keyboardKey = keyboardKey;
-        this.bg = scene.add.sprite(x, y, "btn-bg").setDisplaySize(24, 24).setDepth(4).setScrollFactor(0, 0);
-        this.logo = scene.add.sprite(x, y, logoKey).setDisplaySize(24, 24).setDepth(4).setScrollFactor(0, 0);
+        this.displaySize = 24;
+
+        this.bg = scene.add
+            .sprite(x, y, "btn-bg")
+            .setDisplaySize(this.displaySize, this.displaySize)
+            .setDepth(4)
+            .setScrollFactor(0, 0);
+
+        this.logo = scene.add
+            .sprite(x, y, logoKey)
+            .setDisplaySize(this.displaySize, this.displaySize)
+            .setDepth(4)
+            .setScrollFactor(0, 0);
+
         this.onCooldown = false;
 
         eventsCenter.on(`${keyboardKey}-start-cooldown`, (cooldown) => this.startCooldownAnimation(cooldown));
@@ -34,7 +46,7 @@ export default class HudBtn {
 
         const cooldownBg = this.scene.add
             .sprite(this.bg.x, this.bg.y, "btn-bg")
-            .setDisplaySize(24, 24)
+            .setDisplaySize(this.displaySize, this.displaySize)
             .setDepth(4)
             .setScrollFactor(0, 0)
             .setTint(0x000000)

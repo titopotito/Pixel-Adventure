@@ -20,7 +20,7 @@ export default class TreasureChest extends Phaser.Physics.Arcade.Sprite {
     }
 
     randomTrueOrFalse() {
-        if (Math.random() > 0.5) return true;
+        if (Math.random() > 0.45) return true;
         return false;
     }
 
@@ -35,7 +35,7 @@ export default class TreasureChest extends Phaser.Physics.Arcade.Sprite {
 
         eventsCenter.emit("gold-gained", this.gold);
 
-        if (this.hasHpPotion) new Potion(this.scene, this.x, this.y, "hp").startAnimation();
-        if (this.hasMpPotion) new Potion(this.scene, this.x, this.y, "mp").startAnimation();
+        if (this.hasHpPotion) new Potion(this.scene, this.x, this.y, "hp-potion").startAnimation();
+        if (this.hasMpPotion) new Potion(this.scene, this.x, this.y, "mp-potion").startAnimation();
     }
 }

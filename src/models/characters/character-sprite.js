@@ -70,6 +70,14 @@ export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    receiveMana(mana) {
+        if (this.currentMP + mana < this.maxMP) {
+            this.currentMP += mana;
+        } else {
+            this.currentMP = this.maxMP;
+        }
+    }
+
     freeze() {
         this.isFrozen = true;
         this.setVelocity(0);

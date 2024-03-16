@@ -9,6 +9,7 @@ export default class Adventurer extends CharacterSprite {
         this.overlapBody = new OverlapBody({ ...config, character: this });
         this.maxMP = 100;
         this.currentMP = this.maxMP;
+        this.inventory = null;
     }
 
     get keyboardKeyMap() {
@@ -21,11 +22,13 @@ export default class Adventurer extends CharacterSprite {
         keyboardKeyMap["interact"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyboardKeyMap["skill1"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
         keyboardKeyMap["skill2"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
+        keyboardKeyMap["useItem1"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+        keyboardKeyMap["useItem2"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
         return keyboardKeyMap;
     }
 
     interact(treasureChest) {
-        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["interact"], 2000)) {
+        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["interact"], 1000)) {
             treasureChest.open();
         }
     }
@@ -110,6 +113,14 @@ export default class Adventurer extends CharacterSprite {
                 this.consumeMP(this.skill2.mpCost);
                 this.skill2.cast();
             }
+        }
+
+        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["useItem1"], 1000)) {
+            this.inventory.useItem(1);
+        }
+
+        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["useItem2"], 1000)) {
+            this.inventory.useItem(2);
         }
     }
 }

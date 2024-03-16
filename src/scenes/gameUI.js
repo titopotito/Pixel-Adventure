@@ -23,11 +23,8 @@ export default class GameUI extends Phaser.Scene {
         this.cameras.main.startFollow(this.data.adventurer, true);
 
         this.portrait = this.add.sprite(0, 0, "adventurer-portrait").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
-        // this.hpPotion = this.add.sprite(0, 216, "hp-potion").setDepth(4).setScrollFactor(0, 0).setOrigin(0);
-        // this.mpPotion = this.add.sprite(22, 216, "mp-potion").setDepth(4).setScrollFactor(0, 0).setOrigin(0);
-        // this.invBorder1 = this.add.sprite(0, 216, "inv-border").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
-        // this.invBorder2 = this.add.sprite(22, 216, "inv-border").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
-        this.inventory = new Inventory(this, 0, 216);
+        this.data.adventurer.inventory = new Inventory(this, 0, 216);
+        console.log(this.data.adventurer);
         this.goldCounter = new GoldCounter(this, 308, 4);
 
         this.skill2Btn = new HudBtn(this, 345, 225, "fire-logo", "keydown-L");

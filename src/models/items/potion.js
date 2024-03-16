@@ -2,8 +2,8 @@ import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
 
 export default class Potion extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, type = "hp") {
-        super(scene, x, y, `${type}-potion`);
+    constructor(scene, x, y, type = "hp-potion") {
+        super(scene, x, y, type);
         scene.physics.add.existing(this);
         this.scene = scene;
         this.x = x;
@@ -12,6 +12,21 @@ export default class Potion extends Phaser.GameObjects.Sprite {
         this.setDepth(4);
         this.setScale(0.5);
         this.addToDisplayList();
+    }
+
+    use() {
+        const healing = 20;
+        const manaRecovery = 20;
+
+        if (this.type === "hp-potion") {
+            this.scene.adventurer.receiveHealing(healing);
+            this.destroy();
+        }
+
+        if (this.type === "mp-potion") {
+            this.scene.adventurer.receiveMana(manaRecovery);
+            this.destroy();
+        }
     }
 
     startAnimation() {
@@ -24,14 +39,13 @@ export default class Potion extends Phaser.GameObjects.Sprite {
             ease: "Power1",
             onComplete: () => {
                 this.scene.physics.add.overlap(this.scene.adventurer, this, () => {
-                    eventsCenter.emit("add-item", {
-                        item: `${this.type}-potion`,
-                        quantity: 1,
-                        key: `${this.type}-potion`,
-                    });
-                    this.destroy();
+                    eventsCenter.emit("add-item", this);
+                    this.body.destroy();
+                    this.removeFromDisplayList();
                 });
             },
         });
     }
 }
+
+// TO DO - ENABLE USE OF POTIONS
