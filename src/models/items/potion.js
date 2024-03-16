@@ -18,6 +18,8 @@ export default class Potion extends Phaser.GameObjects.Sprite {
         const healing = 20;
         const manaRecovery = 20;
 
+        this.scene.sound.add("recover").play();
+
         if (this.type === "hp-potion") {
             this.scene.adventurer.receiveHealing(healing);
             this.destroy();
@@ -40,6 +42,7 @@ export default class Potion extends Phaser.GameObjects.Sprite {
             onComplete: () => {
                 this.scene.physics.add.overlap(this.scene.adventurer, this, () => {
                     eventsCenter.emit("add-item", this);
+                    this.scene.sound.add("potion").play();
                     this.body.destroy();
                     this.removeFromDisplayList();
                 });

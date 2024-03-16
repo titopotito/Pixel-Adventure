@@ -70,6 +70,7 @@ export default class Flamethrower {
             this.scene.physics.add.overlap(fireSprite, this.caster.target, (fireSprite, target) => {
                 target.takeDamage(this.caster.atk * Flamethrower.dmgTable["lvl-1"]);
             });
+            this.scene.sound.add("fire").play();
 
             utilFns.playAnimationForManyThenDestroy(this.scene, [fireSprite], Flamethrower.animationKey, 1000);
             utilFns.rotateBaseOnCharacterDirection(this.caster, fireSprite, 90);

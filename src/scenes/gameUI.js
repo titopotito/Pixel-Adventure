@@ -24,7 +24,7 @@ export default class GameUI extends Phaser.Scene {
 
         this.portrait = this.add.sprite(0, 0, "adventurer-portrait").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
         this.data.adventurer.inventory = new Inventory(this, 0, 216);
-        console.log(this.data.adventurer);
+
         this.goldCounter = new GoldCounter(this, 308, 4);
 
         this.skill2Btn = new HudBtn(this, 345, 225, "fire-logo", "keydown-L");

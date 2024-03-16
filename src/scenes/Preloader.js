@@ -94,6 +94,17 @@ export default class Preloader extends Phaser.Scene {
         this.load.atlas("skill-plant", skillPlantPNGUrl, skillPlantJSONUrl);
         this.load.atlas("skill-rock", skillRockPNGUrl, skillRockJSONUrl);
         this.load.atlas("skill-rock2", skillRock2PNGUrl, skillRock2JSONUrl);
+
+        this.load.audio("adventure-begin", require("../../public/audio/1 - Adventure Begin.ogg"));
+        this.load.audio("coin", require("../../public/audio/coin.wav"));
+        this.load.audio("fire", require("../../public/audio/fire.wav"));
+        this.load.audio("lightning", require("../../public/audio/lightning.wav"));
+        this.load.audio("game-over", require("../../public/audio/game-over.wav"));
+        this.load.audio("recover", require("../../public/audio/recover.wav"));
+        this.load.audio("hit", require("../../public/audio/hit.wav"));
+        this.load.audio("kill", require("../../public/audio/kill.wav"));
+        this.load.audio("potion", require("../../public/audio/potion.wav"));
+        this.load.audio("slash", require("../../public/audio/slash.wav"));
     }
 
     create() {

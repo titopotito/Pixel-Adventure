@@ -32,12 +32,15 @@ export default class Game extends Phaser.Scene {
 
     create() {
         const CHARACTER_STARTING_POSITION = { x: 15, y: 14 };
+        const MAP_DIMENSION = { x: 200, y: 200 };
         const TILE_SIZE = { w: 16, h: 16 };
         const TILESET_MAP = this.make.tilemap({ key: "tileset" });
         const TILESET_MAP_IMAGE = TILESET_MAP.addTilesetImage("tileset", "tileset");
         const LAYERS = ["ground", "water", "water-side", "objects", "environment"];
-        this.physics.world.bounds.width = this.sys.game.config.width * TILE_SIZE.w;
-        this.physics.world.bounds.height = this.sys.game.config.height * TILE_SIZE.h;
+        this.physics.world.bounds.width = MAP_DIMENSION.x * TILE_SIZE.w;
+        this.physics.world.bounds.height = MAP_DIMENSION.y * TILE_SIZE.h;
+
+        this.sound.add("adventure-begin", { loop: true }).play();
 
         // Creating anims
         adventurerAnims(this.anims);
@@ -61,7 +64,7 @@ export default class Game extends Phaser.Scene {
         });
 
         this.basicAttack = new BasicAttack(this.adventurer, "slash-slash");
-        this.skill1 = new FreezingField(this.adventurer);
+        this.skill1 = new HeavensJudgement(this.adventurer);
         this.skill2 = new Flamethrower(this.adventurer);
         this.adventurer.setBasicAttack(this.basicAttack);
         this.adventurer.setSkill1(this.skill1);

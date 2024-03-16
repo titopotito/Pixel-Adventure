@@ -36,6 +36,7 @@ export default class Adventurer extends CharacterSprite {
     attack() {
         super.attack();
         this.basicAttack.cast();
+        this.scene.sound.add("slash").play();
     }
 
     consumeMP(cost) {

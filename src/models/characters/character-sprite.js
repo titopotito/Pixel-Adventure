@@ -53,6 +53,7 @@ export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
     }
 
     takeDamage(damage) {
+        if (!this.isAlive) return;
         if (this.currentHP > damage) {
             this.currentHP -= damage;
         } else {

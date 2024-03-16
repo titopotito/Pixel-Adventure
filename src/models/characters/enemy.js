@@ -16,6 +16,7 @@ export default class Enemy extends CharacterSprite {
 
     die() {
         super.die();
+        this.scene.sound.add("kill").play();
         this.scene.time.addEvent({
             delay: 500,
             callback: () => {
