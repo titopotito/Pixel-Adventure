@@ -4,6 +4,7 @@ import UIBar from "../models/ui/ui-bar";
 import HudBtn from "../models/ui/hud-btns";
 import GoldCounter from "../models/ui/gold-counter";
 import Inventory from "../models/ui/inventory";
+import QuickUseSlots from "../models/ui/quick-use-slots";
 
 export default class GameUI extends Phaser.Scene {
     constructor() {
@@ -22,10 +23,11 @@ export default class GameUI extends Phaser.Scene {
         this.physics.world.bounds.height = this.sys.game.config.height * TILE_SIZE.h;
         this.cameras.main.startFollow(this.data.adventurer, true);
 
-        this.portrait = this.add.sprite(0, 0, "adventurer-portrait").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
-        this.data.adventurer.inventory = new Inventory(this, 0, 216);
+        this.inventory = new Inventory(this);
 
-        this.goldCounter = new GoldCounter(this, 308, 4);
+        this.quickUseSlots = new QuickUseSlots(this);
+
+        this.portrait = this.add.sprite(0, 0, "adventurer-portrait").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
 
         this.skill2Btn = new HudBtn(this, 345, 225, "fire-logo", "keydown-L");
         this.skill1Btn = new HudBtn(this, 318, 225, "rock-logo", "keydown-K");
@@ -39,6 +41,27 @@ export default class GameUI extends Phaser.Scene {
             this.greenDemonsHpBarGroup.push(
                 new EnemyHealthBar(this, greenDemon, { scale: 0.3, offsetX: 0, offsetY: -16 })
             );
+        });
+
+        this.setUpKeyboardEventListeners();
+    }
+
+    setUpKeyboardEventListeners() {
+        this.input.keyboard.on("keydown-I", () => {
+            this.inventory.toggleVisibility();
+        });
+
+        this.input.keyboard.on("keydown-ONE", () => {
+            let itemName = this.quickUseSlots.useItem(1);
+            this.inventory.findItemAndUpdate(itemName);
+        });
+        this.input.keyboard.on("keydown-TWO", () => {
+            let itemName = this.quickUseSlots.useItem(2);
+            this.inventory.findItemAndUpdate(itemName);
+        });
+        this.input.keyboard.on("keydown-THREE", () => {
+            let itemName = this.quickUseSlots.useItem(3);
+            this.inventory.findItemAndUpdate(itemName);
         });
     }
 

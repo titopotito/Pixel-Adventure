@@ -1,74 +1,113 @@
 import eventsCenter from "../events/events-center";
+import GoldCounter from "./gold-counter";
+
+const SPACING = 30;
+const INVENORY_WIDTH = 188;
+const INVENTORY_HEIGHT = 179;
+const OFFSET_X = 18;
+const OFFSET_Y = 29;
 
 export default class Inventory {
-    constructor(scene, x, y) {
+    constructor(scene) {
         this.scene = scene;
-        this.x = x;
-        this.y = y;
-        this.slots = this.createInventory();
+        this.x = 360 / 2;
+        this.y = 240 / 2;
+
+        this.initialVisibility = false;
+
+        this.sprite = scene.add
+            .sprite(this.x, this.y, "inventory")
+            .setOrigin(0.5, 0.5)
+            .setScrollFactor(0, 0)
+            .setVisible(this.initialVisibility)
+            .setDepth(4);
+
+        this.gold = new GoldCounter(scene, this.x + INVENORY_WIDTH / 2 - 22, this.y + INVENTORY_HEIGHT / 2 - 3);
+
+        this.firstItemX = this.x - INVENORY_WIDTH / 2 + OFFSET_X;
+        this.firstItemY = this.y - INVENTORY_HEIGHT / 2 + OFFSET_Y;
+
+        this.list = this.createInventory(this.firstItemX, this.firstItemY, 6, 5);
 
         eventsCenter.on("add-item", (newItem) => {
-            const item = this.findItemAndAdd(newItem);
-            if (item === null) this.addNewItem(newItem);
+            const foundItem = this.findItemAndAdd(newItem);
+            if (foundItem === null) this.addNewItem(newItem);
         });
     }
 
-    useItem(number) {
-        const slot = this.slots[number - 1];
-        if (slot.item.length === 0) return;
+    createInventory(initialX, initialY, lengthX, lengthY) {
+        const list = [];
 
-        slot.item.pop().use();
-        slot.textQuantity.text = slot.item.length;
+        for (let i = 0; i < lengthY; i++) {
+            for (let j = 0; j < lengthX; j++) {
+                let x = initialX + SPACING * j;
+                let y = initialY + SPACING * i;
+                let slot = {
+                    x: x,
+                    y: y,
+                    name: null,
+                    item: null,
+                    isStackable: null,
+                    sprite: null,
+                    textBorder: null,
+                    textQuantity: null,
+                };
+                list.push(slot);
+            }
+        }
 
-        if (slot.item.length === 0) {
-            slot.textQuantity.destroy();
-            slot.textBorder.destroy();
-            slot.itemSprite.destroy();
-            slot.textQuantity = null;
-            slot.textBorder = null;
-            slot.itemSprite = null;
-            slot.type = null;
+        return list;
+    }
+
+    clearSlot(slot) {
+        if (slot.isStackable === false) slot.item.destroy();
+        slot.sprite.destroy();
+        slot.textQuantity.destroy();
+        slot.textBorder.destroy();
+        slot.name = null;
+        slot.item = null;
+        slot.isStackable = null;
+        slot.sprite = null;
+        slot.textQuantity = null;
+        slot.textBorder = null;
+    }
+
+    findItemAndUpdate(name) {
+        for (let slot of this.list) {
+            if (slot.name === name && slot.isStackable === true) {
+                slot.item.pop().destroy();
+                slot.textQuantity.text = slot.item.length;
+                if (slot.item.length === 0) this.clearSlot(slot);
+                return slot;
+            }
         }
     }
 
-    createInventory() {
-        return [
-            {
-                item: [],
-                type: null,
-                itemSprite: null,
-                textQuantity: null,
-                textBorder: null,
+    useItem(number) {
+        let slot = this.list[number - 1];
+        let itemName = slot.name;
+        if (slot.item === null) return;
 
-                // background
-                sprite: this.scene.add
-                    .sprite(this.x, this.y, "inv-border")
-                    .setDepth(3)
-                    .setScrollFactor(0, 0)
-                    .setOrigin(0),
-            },
-            {
-                item: [],
-                type: null,
-                itemSprite: null,
-                textQuantity: null,
-                textBorder: null,
+        if (slot.isStackable === false) slot.item.use();
+        else {
+            slot.item.pop().use();
+            slot.textQuantity.text = slot.item.length;
 
-                // background
-                sprite: this.scene.add
-                    .sprite(this.x + 22, this.y, "inv-border")
-                    .setDepth(3)
-                    .setScrollFactor(0, 0)
-                    .setOrigin(0),
-            },
-        ];
+            if (slot.item.length === 0) {
+                this.clearSlot(slot);
+            }
+            return itemName;
+        }
     }
 
     findItemAndAdd(newItem) {
-        for (let slot of this.slots) {
-            if (slot.item.length !== 0 && Object.values(slot).includes(newItem.type)) {
-                slot.item.push(newItem);
-                slot.textQuantity.text = slot.item.length;
+        for (let slot of this.list) {
+            if (Object.values(slot).includes(newItem.name)) {
+                if (newItem.isStackable === false) slot.item = newItem;
+                else {
+                    slot.item.push(newItem);
+                    slot.textQuantity.text = slot.item.length;
+                }
                 return slot;
             }
         }
@@ -76,30 +115,67 @@ export default class Inventory {
         return null;
     }
 
+    toggleVisibility() {
+        if (this.sprite.visible === false) {
+            this.sprite.setVisible(true);
+            this.gold.text.setVisible(true);
+            this.list.forEach((slot) => {
+                if (slot.item !== null) {
+                    slot.sprite.setVisible(true);
+                    slot.textBorder.setVisible(true);
+                    slot.textQuantity.setVisible(true);
+                }
+            });
+        } else {
+            this.sprite.setVisible(false);
+            this.gold.text.setVisible(false);
+            this.list.forEach((slot) => {
+                if (slot.item !== null) {
+                    slot.sprite.setVisible(false);
+                    slot.textBorder.setVisible(false);
+                    slot.textQuantity.setVisible(false);
+                }
+            });
+        }
+    }
+
     addNewItem(newItem) {
-        for (let slot of this.slots) {
-            if (slot.item.length === 0) {
-                slot.item.push(newItem);
-                slot.type = newItem.type;
+        for (let slot of this.list) {
+            if (slot.item === null) {
+                slot.name = newItem.name;
 
-                slot.itemSprite = this.scene.add
-                    .sprite(slot.sprite.x, slot.sprite.y, newItem.type)
-                    .setDepth(4)
-                    .setScrollFactor(0, 0)
-                    .setOrigin(0);
+                if (newItem.isStackable === false) slot.item = newItem;
+                else {
+                    const textPositionOffset = { x: 10, y: 10 };
 
-                slot.textBorder = this.scene.add
-                    .rectangle(slot.sprite.x + 20, slot.sprite.y + 20, 7, 7, "0xffffff")
-                    .setDepth(5)
-                    .setScrollFactor(0, 0)
-                    .setOrigin(0.5)
-                    .setStrokeStyle(1, "0x000000", 1);
+                    slot.item = [newItem];
 
-                slot.textQuantity = this.scene.add
-                    .text(slot.sprite.x + 20, slot.sprite.y + 21, 1, { fontSize: 8, color: "0x000000" })
-                    .setDepth(5)
-                    .setScrollFactor(0, 0)
-                    .setOrigin(0.5);
+                    slot.isStackable = newItem.isStackable;
+
+                    slot.sprite = this.scene.add
+                        .sprite(slot.x, slot.y, newItem.name)
+                        .setDepth(4)
+                        .setScrollFactor(0, 0)
+                        .setVisible(this.initialVisibility);
+
+                    slot.textBorder = this.scene.add
+                        .rectangle(slot.x + textPositionOffset.x, slot.y + textPositionOffset.y, 7, 7, "0xffffff")
+                        .setDepth(5)
+                        .setScrollFactor(0, 0)
+                        .setOrigin(0.5)
+                        .setStrokeStyle(1, "0x000000", 1)
+                        .setVisible(this.initialVisibility);
+
+                    slot.textQuantity = this.scene.add
+                        .text(slot.x + textPositionOffset.x, slot.y + textPositionOffset.y, 1, {
+                            fontSize: 8,
+                            color: "0x000000",
+                        })
+                        .setDepth(5)
+                        .setScrollFactor(0, 0)
+                        .setOrigin(0.5)
+                        .setVisible(this.initialVisibility);
+                }
 
                 return slot;
             }

@@ -34,7 +34,7 @@ export default class TreasureChest extends Phaser.Physics.Arcade.Sprite {
         this.removeFromUpdateList();
         this.scene.time.addEvent({ delay: 1000, callback: () => this.destroy() });
 
-        eventsCenter.emit("gold-gained", this.gold);
+        eventsCenter.emit("gold-gained", { x: this.x, y: this.y, amount: this.gold });
 
         if (this.hasHpPotion) new Potion(this.scene, this.x, this.y, "hp-potion").startAnimation();
         if (this.hasMpPotion) new Potion(this.scene, this.x, this.y, "mp-potion").startAnimation();

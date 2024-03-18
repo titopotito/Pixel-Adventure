@@ -2,13 +2,14 @@ import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
 
 export default class Potion extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, type = "hp-potion") {
-        super(scene, x, y, type);
+    constructor(scene, x, y, name = "hp-potion") {
+        super(scene, x, y, name);
         scene.physics.add.existing(this);
         this.scene = scene;
         this.x = x;
         this.y = y;
-        this.type = type;
+        this.name = name;
+        this.isStackable = true;
         this.setDepth(4);
         this.setScale(0.5);
         this.addToDisplayList();
@@ -20,14 +21,14 @@ export default class Potion extends Phaser.GameObjects.Sprite {
 
         this.scene.sound.add("recover").play();
 
-        if (this.type === "hp-potion") {
+        if (this.name === "hp-potion") {
             this.scene.adventurer.receiveHealing(healing);
-            this.destroy();
+            this.destroy(true);
         }
 
-        if (this.type === "mp-potion") {
+        if (this.name === "mp-potion") {
             this.scene.adventurer.receiveMana(manaRecovery);
-            this.destroy();
+            this.destroy(true);
         }
     }
 

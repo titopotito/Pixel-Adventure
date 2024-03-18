@@ -115,13 +115,5 @@ export default class Adventurer extends CharacterSprite {
                 this.skill2.cast();
             }
         }
-
-        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["useItem1"], 1000)) {
-            this.inventory.useItem(1);
-        }
-
-        if (this.scene.input.keyboard.checkDown(this.keyboardKeyMap["useItem2"], 1000)) {
-            this.inventory.useItem(2);
-        }
     }
 }
