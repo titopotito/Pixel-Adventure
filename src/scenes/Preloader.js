@@ -52,6 +52,7 @@ import mpPotionPNGUrl from "/public/items/potion/mp-potion.png";
 import goldCountPNGUrl from "/public/ui/gold-count.png";
 import inventoryPNGUrl from "/public/ui/inventory.png";
 import quickUseSlotsPNGUrl from "/public/ui/quick-use-slots.png";
+import inventoryBorderHighlightPNGUrl from "/public/ui/inventory-border-highlight.png";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -77,6 +78,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("gold-count", goldCountPNGUrl);
         this.load.image("inventory", inventoryPNGUrl);
         this.load.image("quick-use-slots", quickUseSlotsPNGUrl);
+        this.load.image("inventory-border-highlight", inventoryBorderHighlightPNGUrl);
 
         this.load.atlas("adventurer", adventurerPNGUrl, adventurerJSONUrl);
         this.load.atlas("green-demon", greenDemonPNGUrl, greenDemonJSONUrl);

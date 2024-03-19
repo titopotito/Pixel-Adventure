@@ -29,9 +29,10 @@ export default class GameUI extends Phaser.Scene {
 
         this.portrait = this.add.sprite(0, 0, "adventurer-portrait").setDepth(3).setScrollFactor(0, 0).setOrigin(0);
 
-        this.skill2Btn = new HudBtn(this, 345, 225, "fire-logo", "keydown-L");
-        this.skill1Btn = new HudBtn(this, 318, 225, "rock-logo", "keydown-K");
-        this.atkBtn = new HudBtn(this, 291, 225, "basic-atk-logo", "keydown-J");
+        this.skill2Btn = new HudBtn(this, 334, 180, "fire-logo", "keydown-L");
+        this.skill1Btn = new HudBtn(this, 300, 214, "ice-logo", "keydown-K");
+        this.atkBtn = new HudBtn(this, 334, 214, "basic-atk-logo", "keydown-J");
+        this.atkBtn.setDisplaySize(30);
 
         this.adventurerHpBar = new UIBar(this, this.data.adventurer, 40, 2, "health-bar");
         this.adventurerManaBar = new UIBar(this, this.data.adventurer, 40, 16, "mana-bar");
@@ -47,21 +48,52 @@ export default class GameUI extends Phaser.Scene {
     }
 
     setUpKeyboardEventListeners() {
-        this.input.keyboard.on("keydown-I", () => {
-            this.inventory.toggleVisibility();
-        });
-
+        // Quick-Use-Slot Events
         this.input.keyboard.on("keydown-ONE", () => {
-            let itemName = this.quickUseSlots.useItem(1);
+            let itemName = this.quickUseSlots.useItem(0);
             this.inventory.findItemAndUpdate(itemName);
         });
         this.input.keyboard.on("keydown-TWO", () => {
-            let itemName = this.quickUseSlots.useItem(2);
+            let itemName = this.quickUseSlots.useItem(1);
             this.inventory.findItemAndUpdate(itemName);
         });
         this.input.keyboard.on("keydown-THREE", () => {
-            let itemName = this.quickUseSlots.useItem(3);
+            let itemName = this.quickUseSlots.useItem(2);
             this.inventory.findItemAndUpdate(itemName);
+        });
+
+        // Inventory Events
+        this.input.keyboard.on("keydown-I", () => {
+            this.inventory.toggleVisibility();
+        });
+        this.input.keyboard.on("keydown-RIGHT", () => {
+            this.inventory.focus += 1;
+            if (this.inventory.focus >= 30) this.inventory.focus -= 6;
+            this.inventory.highlightBorder.x = this.inventory.list[this.inventory.focus].x;
+            this.inventory.highlightBorder.y = this.inventory.list[this.inventory.focus].y;
+        });
+        this.input.keyboard.on("keydown-DOWN", () => {
+            this.inventory.focus += 6;
+            if (this.inventory.focus >= 30) this.inventory.focus -= 30;
+            this.inventory.highlightBorder.x = this.inventory.list[this.inventory.focus].x;
+            this.inventory.highlightBorder.y = this.inventory.list[this.inventory.focus].y;
+        });
+        this.input.keyboard.on("keydown-LEFT", () => {
+            this.inventory.focus -= 1;
+            if (this.inventory.focus < 0) this.inventory.focus += 6;
+            this.inventory.highlightBorder.x = this.inventory.list[this.inventory.focus].x;
+            this.inventory.highlightBorder.y = this.inventory.list[this.inventory.focus].y;
+        });
+        this.input.keyboard.on("keydown-UP", () => {
+            this.inventory.focus -= 6;
+            if (this.inventory.focus < 0) this.inventory.focus += 30;
+            this.inventory.highlightBorder.x = this.inventory.list[this.inventory.focus].x;
+            this.inventory.highlightBorder.y = this.inventory.list[this.inventory.focus].y;
+        });
+        this.input.keyboard.on("keydown-ENTER", () => {
+            if (this.inventory.sprite.visible === false) return;
+            let itemName = this.inventory.useItem(this.inventory.focus);
+            this.quickUseSlots.findItemAndUpdate(itemName);
         });
     }
 

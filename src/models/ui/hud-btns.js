@@ -11,18 +11,26 @@ export default class HudBtn {
             .sprite(x, y, "btn-bg")
             .setDisplaySize(this.displaySize, this.displaySize)
             .setDepth(4)
-            .setScrollFactor(0, 0);
+            .setScrollFactor(0, 0)
+            .setAlpha(0.7);
 
         this.logo = scene.add
             .sprite(x, y, logoKey)
             .setDisplaySize(this.displaySize, this.displaySize)
             .setDepth(4)
-            .setScrollFactor(0, 0);
+            .setScrollFactor(0, 0)
+            .setAlpha(0.7);
 
         this.onCooldown = false;
 
         eventsCenter.on(`${keyboardKey}-start-cooldown`, (cooldown) => this.startCooldownAnimation(cooldown));
         eventsCenter.on(`${keyboardKey}-set-active`, (duration) => this.setActive(duration));
+    }
+
+    setDisplaySize(size) {
+        this.displaySize = size;
+        this.bg.setDisplaySize(size, size);
+        this.logo.setDisplaySize(size, size);
     }
 
     setActive(duration) {

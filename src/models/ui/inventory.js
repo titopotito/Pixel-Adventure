@@ -12,6 +12,7 @@ export default class Inventory {
         this.scene = scene;
         this.x = 360 / 2;
         this.y = 240 / 2;
+        this.focus = 0;
 
         this.initialVisibility = false;
 
@@ -28,6 +29,11 @@ export default class Inventory {
         this.firstItemY = this.y - INVENTORY_HEIGHT / 2 + OFFSET_Y;
 
         this.list = this.createInventory(this.firstItemX, this.firstItemY, 6, 5);
+        this.highlightBorder = scene.add
+            .sprite(this.firstItemX, this.firstItemY, "inventory-border-highlight")
+            .setScrollFactor(0, 0)
+            .setDepth(4)
+            .setVisible(false);
 
         eventsCenter.on("add-item", (newItem) => {
             const foundItem = this.findItemAndAdd(newItem);
@@ -84,8 +90,9 @@ export default class Inventory {
     }
 
     useItem(number) {
-        let slot = this.list[number - 1];
+        let slot = this.list[number];
         let itemName = slot.name;
+
         if (slot.item === null) return;
 
         if (slot.isStackable === false) slot.item.use();
@@ -119,6 +126,7 @@ export default class Inventory {
         if (this.sprite.visible === false) {
             this.sprite.setVisible(true);
             this.gold.text.setVisible(true);
+            this.highlightBorder.setVisible(true);
             this.list.forEach((slot) => {
                 if (slot.item !== null) {
                     slot.sprite.setVisible(true);
@@ -129,6 +137,7 @@ export default class Inventory {
         } else {
             this.sprite.setVisible(false);
             this.gold.text.setVisible(false);
+            this.highlightBorder.setVisible(false);
             this.list.forEach((slot) => {
                 if (slot.item !== null) {
                     slot.sprite.setVisible(false);
