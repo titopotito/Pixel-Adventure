@@ -14,10 +14,6 @@ import { skillLightningAnims } from "../anims/skill-lightning-anims.js";
 import { skillPlantAnims } from "../anims/skill-plant-anims.js";
 import { skillRockAnims } from "../anims/skill-rock-anims.js";
 import { skillRock2Anims } from "../anims/skill-rock2-anims.js";
-import FreezingField from "../models/skills/freezing-field.js";
-import BasicAttack from "../models/skills/basic-attack.js";
-import HeavensJudgement from "../models/skills/heaven-s-judgement.js";
-import Flamethrower from "../models/skills/flamethrower.js";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -63,14 +59,6 @@ export default class Game extends Phaser.Scene {
             spriteName: "adventurer",
         });
 
-        this.basicAttack = new BasicAttack(this.adventurer, "slash-slash");
-        this.skill1 = new HeavensJudgement(this.adventurer);
-        this.skill2 = new Flamethrower(this.adventurer);
-        this.adventurer.setBasicAttack(this.basicAttack);
-        this.adventurer.setSkill1(this.skill1);
-        this.adventurer.setSkill2(this.skill2);
-
-        // Creating Enemy Objects and adding them to Physics.Arcade.Group "greenDemonsGroup".
         this.greenDemonsGroup = new Phaser.Physics.Arcade.Group(this.physics.world, this);
         const greenDemonLayer = TILESET_MAP.getObjectLayer("green-demon");
         greenDemonLayer.objects.forEach((greenDemonObj) => {

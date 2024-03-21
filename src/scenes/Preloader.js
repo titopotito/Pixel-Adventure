@@ -53,6 +53,11 @@ import goldCountPNGUrl from "/public/ui/gold-count.png";
 import inventoryPNGUrl from "/public/ui/inventory.png";
 import quickUseSlotsPNGUrl from "/public/ui/quick-use-slots.png";
 import inventoryBorderHighlightPNGUrl from "/public/ui/inventory-border-highlight.png";
+import inventoryLogoPNGUrl from "/public/ui/inventory-logo.png";
+import skillLogoPNGUrl from "/public/ui/skill-logo.png";
+import skillWindowPNGUrl from "/public/ui/skill-window.png";
+import buttonPNGUrl from "/public/ui/button.png";
+import buttonBorderPNGUrl from "/public/ui/button-border.png";
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
@@ -79,6 +84,11 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("inventory", inventoryPNGUrl);
         this.load.image("quick-use-slots", quickUseSlotsPNGUrl);
         this.load.image("inventory-border-highlight", inventoryBorderHighlightPNGUrl);
+        this.load.image("inventory-logo", inventoryLogoPNGUrl);
+        this.load.image("skill-logo", skillLogoPNGUrl);
+        this.load.image("skill-window", skillWindowPNGUrl);
+        this.load.image("button", buttonPNGUrl);
+        this.load.image("button-border", buttonBorderPNGUrl);
 
         this.load.atlas("adventurer", adventurerPNGUrl, adventurerJSONUrl);
         this.load.atlas("green-demon", greenDemonPNGUrl, greenDemonJSONUrl);
@@ -109,6 +119,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.audio("kill", require("../../public/audio/kill.wav"));
         this.load.audio("potion", require("../../public/audio/potion.wav"));
         this.load.audio("slash", require("../../public/audio/slash.wav"));
+
+        this.load.html("skill-window", require("../skill-window.html"));
     }
 
     create() {

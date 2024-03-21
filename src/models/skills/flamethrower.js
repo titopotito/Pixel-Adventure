@@ -13,6 +13,8 @@ export default class Flamethrower {
         this.isOnCooldown = false;
         this.keyCode = keyCode;
         this.mpCost = 1;
+        this.name = Flamethrower.name;
+        this.level = 1;
     }
 
     static get name() {
@@ -25,6 +27,10 @@ export default class Flamethrower {
 
     static get animationKey() {
         return "skill-fire-cast";
+    }
+
+    static get icon() {
+        return "fire-logo";
     }
 
     static get dmgTable() {
@@ -40,6 +46,10 @@ export default class Flamethrower {
             "lvl-9": 1.1,
             "lvl-10": 1.2,
         };
+    }
+
+    getSkillDamage() {
+        return Flamethrower.dmgTable[`lvl-${this.level}`];
     }
 
     startCooldown() {

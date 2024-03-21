@@ -12,6 +12,8 @@ export default class FreezingField {
         this.keyCode = keyCode;
         this.iceSpriteDuration = 400;
         this.mpCost = 10;
+        this.name = FreezingField.name;
+        this.level = 1;
     }
 
     static get name() {
@@ -24,6 +26,10 @@ export default class FreezingField {
 
     static get animationKey() {
         return "skill-ice-cast";
+    }
+
+    static get icon() {
+        return "ice-logo";
     }
 
     static get dmgTable() {
@@ -39,6 +45,10 @@ export default class FreezingField {
             "lvl-9": 1.1,
             "lvl-10": 1.2,
         };
+    }
+
+    getSkillDamage() {
+        return FreezingField.dmgTable[`lvl-${this.level}`];
     }
 
     startCooldown() {

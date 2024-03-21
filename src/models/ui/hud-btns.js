@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
 
 export default class HudBtn {
-    constructor(scene, x, y, logoKey, keyboardKey) {
+    constructor(scene, x, y, iconKey, keyboardKey) {
         this.scene = scene;
         this.keyboardKey = keyboardKey;
         this.displaySize = 24;
@@ -14,8 +14,8 @@ export default class HudBtn {
             .setScrollFactor(0, 0)
             .setAlpha(0.7);
 
-        this.logo = scene.add
-            .sprite(x, y, logoKey)
+        this.icon = scene.add
+            .sprite(x, y, iconKey)
             .setDisplaySize(this.displaySize, this.displaySize)
             .setDepth(4)
             .setScrollFactor(0, 0)
@@ -30,7 +30,11 @@ export default class HudBtn {
     setDisplaySize(size) {
         this.displaySize = size;
         this.bg.setDisplaySize(size, size);
-        this.logo.setDisplaySize(size, size);
+        this.icon.setDisplaySize(size, size);
+    }
+
+    setIcon(iconKey) {
+        this.icon.texture.key = iconKey;
     }
 
     setActive(duration) {

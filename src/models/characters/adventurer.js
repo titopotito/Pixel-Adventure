@@ -1,5 +1,10 @@
 import CharacterSprite from "./character-sprite.js";
 import OverlapBody from "../body/overlap-body.js";
+import BasicAttack from "../skills/basic-attack.js";
+import HeavensJudgement from "../skills/heaven-s-judgement";
+import Flamethrower from "../skills/flamethrower";
+import FreezingField from "../skills/freezing-field";
+import PlanetBefall from "../skills/planet-befall";
 import eventsCenter from "../events/events-center.js";
 
 export default class Adventurer extends CharacterSprite {
@@ -10,6 +15,15 @@ export default class Adventurer extends CharacterSprite {
         this.maxMP = 100;
         this.currentMP = this.maxMP;
         this.inventory = null;
+        this.basicAttack = new BasicAttack(this, "slash-slash");
+        this.skills = {
+            "heaven-s-judgement": new HeavensJudgement(this),
+            flamethrower: new Flamethrower(this),
+            "freezing-field": new FreezingField(this),
+            "planet-befall": new PlanetBefall(this),
+        };
+
+        this.init();
     }
 
     get keyboardKeyMap() {
@@ -25,6 +39,10 @@ export default class Adventurer extends CharacterSprite {
         keyboardKeyMap["useItem1"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
         keyboardKeyMap["useItem2"] = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
         return keyboardKeyMap;
+    }
+    init() {
+        this.setSkill1(this.skills[FreezingField.name]);
+        this.setSkill2(this.skills[Flamethrower.name]);
     }
 
     interact(treasureChest) {

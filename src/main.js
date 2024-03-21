@@ -5,6 +5,7 @@ import GameUI from "./scenes/gameUI.js";
 
 const config = {
     type: Phaser.AUTO,
+
     width: 360,
     height: 240,
     physics: {
@@ -20,6 +21,8 @@ const config = {
     antialias: false,
     autoRound: true,
     roundPixels: true,
+    parent: "div",
+    dom: { createContainer: true },
 };
 
 export default new Phaser.Game(config);

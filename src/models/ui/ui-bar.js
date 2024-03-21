@@ -29,7 +29,7 @@ export default class UIBar {
                     this.bar.x + this.maxWidth / 2,
                     this.bar.y + this.bar.displayHeight / 2,
                     `${this.character.currentMP}/${this.character.maxMP}`,
-                    { fontSize: 10 }
+                    { fontSize: 10, fontFamily: "NormalFont" }
                 )
                 .setScrollFactor(0, 0)
                 .setDepth(3)

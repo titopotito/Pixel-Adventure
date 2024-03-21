@@ -11,6 +11,8 @@ export default class PlanetBefall {
         this.isOnCooldown = false;
         this.keyCode = keyCode;
         this.mpCost = 10;
+        this.name = PlanetBefall.name;
+        this.level = 1;
     }
 
     static get name() {
@@ -23,6 +25,10 @@ export default class PlanetBefall {
 
     static get animationKey() {
         return "skill-rock2-cast";
+    }
+
+    static get icon() {
+        return "rock-logo";
     }
 
     static get dmgTable() {
@@ -38,6 +44,10 @@ export default class PlanetBefall {
             "lvl-9": 1.8,
             "lvl-10": 1.9,
         };
+    }
+
+    getSkillDamage() {
+        return PlanetBefall.dmgTable[`lvl-${this.level}`];
     }
 
     startCooldown() {

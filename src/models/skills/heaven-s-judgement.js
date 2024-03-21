@@ -16,6 +16,8 @@ export default class HeavensJudgement {
         this.range = { x: 240, y: 240 };
         this.keyCode = keyCode;
         this.mpCost = 20;
+        this.name = HeavensJudgement.name;
+        this.level = 1;
     }
 
     static get name() {
@@ -28,6 +30,10 @@ export default class HeavensJudgement {
 
     static get animationKey() {
         return "skill-lightning-cast";
+    }
+
+    static get icon() {
+        return "lightning-logo";
     }
 
     static get dmgTable() {
@@ -43,6 +49,10 @@ export default class HeavensJudgement {
             "lvl-9": 1.6,
             "lvl-10": 1.7,
         };
+    }
+
+    getSkillDamage() {
+        return HeavensJudgement.dmgTable[`lvl-${this.level}`];
     }
 
     startCooldown() {

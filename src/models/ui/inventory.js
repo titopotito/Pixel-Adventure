@@ -10,8 +10,8 @@ const OFFSET_Y = 29;
 export default class Inventory {
     constructor(scene) {
         this.scene = scene;
-        this.x = 360 / 2;
-        this.y = 240 / 2;
+        this.x = scene.sys.game.config.width / 2;
+        this.y = scene.sys.game.config.height / 2;
         this.focus = 0;
 
         this.initialVisibility = false;
@@ -29,6 +29,7 @@ export default class Inventory {
         this.firstItemY = this.y - INVENTORY_HEIGHT / 2 + OFFSET_Y;
 
         this.list = this.createInventory(this.firstItemX, this.firstItemY, 6, 5);
+
         this.highlightBorder = scene.add
             .sprite(this.firstItemX, this.firstItemY, "inventory-border-highlight")
             .setScrollFactor(0, 0)

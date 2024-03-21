@@ -1,0 +1,31 @@
+body {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4px;
+    color: #622d37;
+}
+
+.skill-window {
+    width: 112;
+    height: 118;
+    box-sizing: border-box;
+    padding: 4px;
+}
+
+#skill-name {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.skill-details {
+    margin-top: 4px;
+}
+
+.detail {
+    margin-bottom: 4px;
+}
+
+.label {
+    font-weight: bold;
+}
