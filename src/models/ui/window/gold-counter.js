@@ -1,4 +1,4 @@
-import eventsCenter from "../events/events-center";
+import eventsCenter from "../../events/events-center";
 
 export default class GoldCounter {
     constructor(scene, x, y) {

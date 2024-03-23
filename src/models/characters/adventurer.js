@@ -1,4 +1,4 @@
-import CharacterSprite from "./character-sprite.js";
+import Character from "./character.js";
 import OverlapBody from "../body/overlap-body.js";
 import BasicAttack from "../skills/basic-attack.js";
 import HeavensJudgement from "../skills/heaven-s-judgement";
@@ -7,7 +7,7 @@ import FreezingField from "../skills/freezing-field";
 import PlanetBefall from "../skills/planet-befall";
 import eventsCenter from "../events/events-center.js";
 
-export default class Adventurer extends CharacterSprite {
+export default class Adventurer extends Character {
     constructor(config) {
         super(config);
         this.scene.cameras.main.startFollow(this, true);

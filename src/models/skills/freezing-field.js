@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
-import * as utilFns from "../utils/sprite-util-functions";
+import * as utilFns from "./util-functions";
 
 export default class FreezingField {
     constructor(caster, keyCode = null) {
@@ -13,6 +13,7 @@ export default class FreezingField {
         this.iceSpriteDuration = 400;
         this.mpCost = 10;
         this.name = FreezingField.name;
+        this.icon = FreezingField.icon;
         this.level = 1;
     }
 

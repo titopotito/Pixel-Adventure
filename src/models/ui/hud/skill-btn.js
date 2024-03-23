@@ -1,11 +1,13 @@
 import Phaser from "phaser";
-import eventsCenter from "../events/events-center";
+import eventsCenter from "../../events/events-center";
 
-export default class HudBtn {
+export default class SkillBtn {
     constructor(scene, x, y, iconKey, keyboardKey) {
         this.scene = scene;
         this.keyboardKey = keyboardKey;
         this.displaySize = 24;
+        this.x = x;
+        this.y = y;
 
         this.bg = scene.add
             .sprite(x, y, "btn-bg")
@@ -25,16 +27,23 @@ export default class HudBtn {
 
         eventsCenter.on(`${keyboardKey}-start-cooldown`, (cooldown) => this.startCooldownAnimation(cooldown));
         eventsCenter.on(`${keyboardKey}-set-active`, (duration) => this.setActive(duration));
+        eventsCenter.on(`${keyboardKey}-equip-skill`, (skill) => this.setIcon(skill.icon));
     }
 
-    setDisplaySize(size) {
+    setSize(size) {
         this.displaySize = size;
         this.bg.setDisplaySize(size, size);
         this.icon.setDisplaySize(size, size);
     }
 
     setIcon(iconKey) {
-        this.icon.texture.key = iconKey;
+        this.icon.destroy();
+        this.icon = this.scene.add
+            .sprite(this.x, this.y, iconKey)
+            .setDisplaySize(this.displaySize, this.displaySize)
+            .setDepth(5)
+            .setScrollFactor(0, 0)
+            .setAlpha(0.7);
     }
 
     setActive(duration) {

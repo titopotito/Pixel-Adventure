@@ -1,7 +1,7 @@
-import CharacterSprite from "./character-sprite.js";
+import Character from "./character.js";
 import BasicAttack from "../skills/basic-attack.js";
 
-export default class Enemy extends CharacterSprite {
+export default class Enemy extends Character {
     constructor(config) {
         super(config);
         this.body.pushable = false;

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import * as utilFns from "../utils/sprite-util-functions";
+import * as utilFns from "./util-functions";
 
 export default class BasicAttack {
     constructor(caster, animationKey, scale = 1, offsetFromCaster = 8) {

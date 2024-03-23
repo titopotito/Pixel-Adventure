@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
-import * as utilFns from "../utils/sprite-util-functions";
+import * as utilFns from "./util-functions";
 
 export default class PlanetBefall {
     constructor(caster, keyCode = null) {
@@ -12,6 +12,7 @@ export default class PlanetBefall {
         this.keyCode = keyCode;
         this.mpCost = 10;
         this.name = PlanetBefall.name;
+        this.icon = PlanetBefall.icon;
         this.level = 1;
     }
 

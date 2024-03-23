@@ -1,11 +1,11 @@
-import Inventory from "./inventory";
+import InventoryWindow from "../window/inventory-window";
 
 const WIDTH = 28;
 const HEIGHT = 88;
 const OFFSET_X = 14;
 const OFFSET_Y = 14;
 
-export default class QuickUseSlots extends Inventory {
+export default class QuickUseSlots extends InventoryWindow {
     constructor(scene) {
         super(scene);
         this.scene = scene;

@@ -1,4 +1,4 @@
-import eventsCenter from "../events/events-center";
+import eventsCenter from "../../events/events-center";
 import GoldCounter from "./gold-counter";
 
 const SPACING = 30;
@@ -7,7 +7,7 @@ const INVENTORY_HEIGHT = 179;
 const OFFSET_X = 18;
 const OFFSET_Y = 29;
 
-export default class Inventory {
+export default class InventoryWindow {
     constructor(scene) {
         this.scene = scene;
         this.x = scene.sys.game.config.width / 2;
@@ -36,6 +36,10 @@ export default class Inventory {
             .setDepth(4)
             .setVisible(false);
 
+        this.setUpEventListener();
+    }
+
+    setUpEventListener() {
         eventsCenter.on("add-item", (newItem) => {
             const foundItem = this.findItemAndAdd(newItem);
             if (foundItem === null) this.addNewItem(newItem);

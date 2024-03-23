@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import NightEffect from "../effects/night-effect";
 import OverlapBody from "../body/overlap-body";
 import eventsCenter from "../events/events-center";
-import * as utilFns from "../utils/sprite-util-functions";
+import * as utilFns from "./util-functions";
 
 export default class HeavensJudgement {
     constructor(caster, keyCode = null) {
@@ -17,6 +17,7 @@ export default class HeavensJudgement {
         this.keyCode = keyCode;
         this.mpCost = 20;
         this.name = HeavensJudgement.name;
+        this.icon = HeavensJudgement.icon;
         this.level = 1;
     }
 

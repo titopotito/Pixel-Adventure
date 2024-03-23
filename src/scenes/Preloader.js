@@ -119,8 +119,9 @@ export default class Preloader extends Phaser.Scene {
         this.load.audio("kill", require("../../public/audio/kill.wav"));
         this.load.audio("potion", require("../../public/audio/potion.wav"));
         this.load.audio("slash", require("../../public/audio/slash.wav"));
+        this.load.audio("pressed", require("../../public/audio/pressed.wav"));
 
-        this.load.html("skill-window", require("../skill-window.html"));
+        this.load.html("skill-window", require("../html/skill-window.html"));
     }
 
     create() {

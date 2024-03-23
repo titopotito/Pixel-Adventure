@@ -2,6 +2,8 @@ import Phaser from "phaser";
 import Preloader from "./scenes/preloader.js";
 import Game from "./scenes/game.js";
 import GameUI from "./scenes/gameUI.js";
+import InventoryWindow from "./scenes/inventory-window.js";
+import SkillWindow from "./scenes/skill-window.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -15,7 +17,7 @@ const config = {
             debug: true,
         },
     },
-    scene: [Preloader, Game, GameUI],
+    scene: [Preloader, Game, GameUI, InventoryWindow, SkillWindow],
     zoom: 2,
     pixelArt: true,
     antialias: false,

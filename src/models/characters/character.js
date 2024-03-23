@@ -2,7 +2,7 @@ import Phaser from "phaser";
 
 const FROZEN_COLOR = "0x0000FF";
 
-export default class CharacterSprite extends Phaser.Physics.Arcade.Sprite {
+export default class Character extends Phaser.Physics.Arcade.Sprite {
     constructor(config, stats = { level: 1, atk: 5, maxHP: 100 }) {
         super(config.scene, config.x, config.y, config.spriteName);
         config.scene.physics.add.existing(this);

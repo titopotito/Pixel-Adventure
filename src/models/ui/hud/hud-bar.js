@@ -1,4 +1,4 @@
-export default class UIBar {
+export default class HudBar {
     constructor(scene, character, x, y, type) {
         this.scene = scene;
         this.character = character;

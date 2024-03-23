@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import eventsCenter from "../events/events-center";
-import * as utilFns from "../utils/sprite-util-functions";
+import * as utilFns from "./util-functions";
 
 export default class Flamethrower {
     constructor(caster, keyCode = null) {
@@ -14,6 +14,7 @@ export default class Flamethrower {
         this.keyCode = keyCode;
         this.mpCost = 1;
         this.name = Flamethrower.name;
+        this.icon = Flamethrower.icon;
         this.level = 1;
     }
 
