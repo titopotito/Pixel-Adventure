@@ -87,7 +87,7 @@ export default class InventoryWindow {
         for (let slot of this.list) {
             if (slot.name === name && slot.isStackable === true) {
                 slot.item.pop().destroy();
-                slot.textQuantity.text = slot.item.length;
+                slot.textQuantity.node.textContent = slot.item.length;
                 if (slot.item.length === 0) this.clearSlot(slot);
                 return slot;
             }
@@ -103,7 +103,7 @@ export default class InventoryWindow {
         if (slot.isStackable === false) slot.item.use();
         else {
             slot.item.pop().use();
-            slot.textQuantity.text = slot.item.length;
+            slot.textQuantity.node.textContent = slot.item.length;
 
             if (slot.item.length === 0) {
                 this.clearSlot(slot);
@@ -118,7 +118,7 @@ export default class InventoryWindow {
                 if (newItem.isStackable === false) slot.item = newItem;
                 else {
                     slot.item.push(newItem);
-                    slot.textQuantity.text = slot.item.length;
+                    slot.textQuantity.node.textContent = slot.item.length;
                 }
                 return slot;
             }
@@ -181,10 +181,13 @@ export default class InventoryWindow {
                         .setVisible(this.initialVisibility);
 
                     slot.textQuantity = this.scene.add
-                        .text(slot.x + textPositionOffset.x, slot.y + textPositionOffset.y, 1, {
-                            fontSize: 8,
-                            color: "0x000000",
-                        })
+                        .dom(
+                            slot.x + textPositionOffset.x,
+                            slot.y + textPositionOffset.y,
+                            "span",
+                            "margin: 0; padding: 0; color: black; font-size: 3px",
+                            `1`
+                        )
                         .setDepth(5)
                         .setScrollFactor(0, 0)
                         .setOrigin(0.5)

@@ -54,7 +54,7 @@ export default class Adventurer extends Character {
     attack() {
         super.attack();
         this.basicAttack.cast();
-        this.scene.sound.add("slash").play();
+        this.scene.sound.play("slash");
     }
 
     consumeMP(cost) {

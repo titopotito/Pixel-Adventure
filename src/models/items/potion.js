@@ -43,7 +43,7 @@ export default class Potion extends Phaser.GameObjects.Sprite {
             onComplete: () => {
                 this.scene.physics.add.overlap(this.scene.adventurer, this, () => {
                     eventsCenter.emit("add-item", this);
-                    this.scene.sound.add("potion").play();
+                    this.scene.sound.play("potion");
                     this.body.destroy();
                     this.removeFromDisplayList();
                 });

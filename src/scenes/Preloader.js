@@ -113,6 +113,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.audio("coin", require("../../public/audio/coin.wav"));
         this.load.audio("fire", require("../../public/audio/fire.wav"));
         this.load.audio("lightning", require("../../public/audio/lightning.wav"));
+        this.load.audio("explosion", require("../../public/audio/explosion.wav"));
+        this.load.audio("ice", require("../../public/audio/ice.wav"));
         this.load.audio("game-over", require("../../public/audio/game-over.wav"));
         this.load.audio("recover", require("../../public/audio/recover.wav"));
         this.load.audio("hit", require("../../public/audio/hit.wav"));
@@ -120,6 +122,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.audio("potion", require("../../public/audio/potion.wav"));
         this.load.audio("slash", require("../../public/audio/slash.wav"));
         this.load.audio("pressed", require("../../public/audio/pressed.wav"));
+        this.load.audio("menu", require("../../public/audio/menu.wav"));
+        this.load.audio("reject", require("../../public/audio/reject.wav"));
 
         this.load.html("skill-window", require("../html/skill-window.html"));
     }

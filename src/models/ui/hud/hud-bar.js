@@ -12,11 +12,12 @@ export default class HudBar {
     setText() {
         if (this.type === "health-bar") {
             this.hpText = this.scene.add
-                .text(
+                .dom(
                     this.bar.x + this.maxWidth / 2,
                     this.bar.y + this.bar.displayHeight / 2,
-                    `${this.character.currentHP}/${this.character.maxHP}`,
-                    { fontSize: 10 }
+                    "span",
+                    "margin: 0; padding: 0; color: white; font-size: 5px",
+                    `${this.character.currentHP}/${this.character.maxHP}`
                 )
                 .setScrollFactor(0, 0)
                 .setDepth(3)
@@ -25,11 +26,12 @@ export default class HudBar {
 
         if (this.type === "mana-bar") {
             this.mpText = this.scene.add
-                .text(
+                .dom(
                     this.bar.x + this.maxWidth / 2,
                     this.bar.y + this.bar.displayHeight / 2,
-                    `${this.character.currentMP}/${this.character.maxMP}`,
-                    { fontSize: 10, fontFamily: "NormalFont" }
+                    "span",
+                    "margin: 0; padding: 0; color: white; font-size: 5px",
+                    `${this.character.currentMP}/${this.character.maxMP}`
                 )
                 .setScrollFactor(0, 0)
                 .setDepth(3)
@@ -52,12 +54,12 @@ export default class HudBar {
     preUpdate(t, dt) {
         if (this.type === "health-bar") {
             this.bar.displayWidth = this.newHpWidth;
-            this.hpText.text = `${this.character.currentHP}/${this.character.maxHP}`;
+            this.hpText.node.textContent = `${this.character.currentHP}/${this.character.maxHP}`;
         }
 
         if (this.type === "mana-bar") {
             this.bar.displayWidth = this.newMpWidth;
-            this.mpText.text = `${this.character.currentMP}/${this.character.maxMP}`;
+            this.mpText.node.textContent = `${this.character.currentMP}/${this.character.maxMP}`;
         }
     }
 }

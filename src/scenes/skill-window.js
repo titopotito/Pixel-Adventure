@@ -12,6 +12,9 @@ export default class SkillWindow extends Phaser.Scene {
     preload() {}
 
     create() {
+        this.sound.add("menu");
+        this.sound.add("pressed");
+
         this.input.keyboard.on("keydown-UP", () => {
             if (this.skillWindow.mode === "list") {
                 this.skillWindow.listFocus -= 1;
@@ -25,6 +28,8 @@ export default class SkillWindow extends Phaser.Scene {
                 this.skillWindow.btnBorder.x = this.skillWindow.btns[this.skillWindow.btnFocus].x;
                 this.skillWindow.btnBorder.y = this.skillWindow.btns[this.skillWindow.btnFocus].y;
             }
+
+            this.sound.play("menu");
         });
 
         this.input.keyboard.on("keydown-DOWN", () => {
@@ -40,6 +45,8 @@ export default class SkillWindow extends Phaser.Scene {
                 this.skillWindow.btnBorder.x = this.skillWindow.btns[this.skillWindow.btnFocus].x;
                 this.skillWindow.btnBorder.y = this.skillWindow.btns[this.skillWindow.btnFocus].y;
             }
+
+            this.sound.play("menu");
         });
 
         this.input.keyboard.on("keydown-RIGHT", () => {
@@ -49,6 +56,7 @@ export default class SkillWindow extends Phaser.Scene {
             this.skillWindow.btnBorder.y = this.skillWindow.btns[this.skillWindow.btnFocus].y;
             this.skillWindow.highlightBorder.setVisible(false);
             this.skillWindow.btnBorder.setVisible(true);
+            this.sound.play("menu");
         });
 
         this.input.keyboard.on("keydown-LEFT", () => {
@@ -59,6 +67,7 @@ export default class SkillWindow extends Phaser.Scene {
             this.skillWindow.highlightBorder.setVisible(true);
             this.skillWindow.btnBorder.setVisible(false);
             this.skillWindow.updateDiv();
+            this.sound.play("menu");
         });
 
         this.input.keyboard.on("keydown-I", () => {
@@ -69,7 +78,9 @@ export default class SkillWindow extends Phaser.Scene {
         this.input.keyboard.on("keydown-ENTER", () => {
             if (this.skillWindow.mode === "list") return;
 
-            this.skillWindow.btns[this.skillWindow.btnFocus].clickFunc();
+            let isSuccess = this.skillWindow.btns[this.skillWindow.btnFocus].clickFunc();
+            if (isSuccess) this.sound.play("pressed");
+            else this.sound.play("reject");
         });
     }
 

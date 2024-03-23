@@ -16,6 +16,7 @@ export default class Flamethrower {
         this.name = Flamethrower.name;
         this.icon = Flamethrower.icon;
         this.level = 1;
+        this.description = "Holding this skill continuously fires fireballs.";
     }
 
     static get name() {
@@ -81,7 +82,7 @@ export default class Flamethrower {
             this.scene.physics.add.overlap(fireSprite, this.caster.target, (fireSprite, target) => {
                 target.takeDamage(this.caster.atk * Flamethrower.dmgTable["lvl-1"]);
             });
-            this.scene.sound.add("fire").play();
+            this.scene.sound.play("fire");
 
             utilFns.playAnimationForManyThenDestroy(this.scene, [fireSprite], Flamethrower.animationKey, 1000);
             utilFns.rotateBaseOnCharacterDirection(this.caster, fireSprite, 90);

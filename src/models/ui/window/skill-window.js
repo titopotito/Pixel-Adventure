@@ -73,24 +73,23 @@ export default class SkillWindow {
             () => {
                 let skill = this.list[this.listFocus].skill;
 
-                if (this.checkIfAlreadyEquipped(skill)) return;
+                if (this.checkIfAlreadyEquipped(skill)) return false;
 
                 this.adventurer.setSkill2(skill);
                 eventsCenter.emit(`keydown-L-equip-skill`, skill);
-                this.scene.sound.add("pressed").play();
+                return true;
             },
             () => {
                 let skill = this.list[this.listFocus].skill;
 
-                if (this.checkIfAlreadyEquipped(skill)) return;
+                if (this.checkIfAlreadyEquipped(skill)) return false;
 
                 this.adventurer.setSkill1(skill);
                 eventsCenter.emit(`keydown-K-equip-skill`, skill);
-                this.scene.sound.add("pressed").play();
+                return true;
             },
             () => {
                 let skill = this.list[this.listFocus].skill;
-                this.scene.sound.add("pressed").play();
             },
         ];
 

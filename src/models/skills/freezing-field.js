@@ -15,6 +15,7 @@ export default class FreezingField {
         this.name = FreezingField.name;
         this.icon = FreezingField.icon;
         this.level = 1;
+        this.description = "Summons icicles from the ground. Enemies hit become frozen.";
     }
 
     static get name() {
@@ -75,6 +76,7 @@ export default class FreezingField {
             return iceSprite;
         });
 
+        this.scene.sound.play("ice");
         utilFns
             .playAnimationForManyThenDestroy(
                 this.scene,
@@ -83,6 +85,7 @@ export default class FreezingField {
                 this.iceSpriteDuration
             )
             .then((sprites) => {
+                this.scene.sound.play("ice");
                 return utilFns.playAnimationForManyThenDestroy(
                     this.scene,
                     iceSprites.slice(3, 6),
@@ -91,6 +94,7 @@ export default class FreezingField {
                 );
             })
             .then((sprites) => {
+                this.scene.sound.play("ice");
                 return utilFns.playAnimationForManyThenDestroy(
                     this.scene,
                     iceSprites.slice(6, 9),

@@ -16,7 +16,7 @@ export default class Enemy extends Character {
 
     die() {
         super.die();
-        this.scene.sound.add("kill").play();
+        this.scene.sound.play("kill");
         this.scene.time.addEvent({
             delay: 500,
             callback: () => {

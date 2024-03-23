@@ -19,6 +19,7 @@ export default class HeavensJudgement {
         this.name = HeavensJudgement.name;
         this.icon = HeavensJudgement.icon;
         this.level = 1;
+        this.description = "Summons a lightning storm which strikes enemies in an interval.";
     }
 
     static get name() {
@@ -104,7 +105,7 @@ export default class HeavensJudgement {
 
                 nightEffect.flash(100);
 
-                this.scene.sound.add("lightning").play();
+                this.scene.sound.play("lightning");
 
                 this.scene.physics.add.collider(lightningSprite, target, (lightningSprite, target) => {
                     target.takeDamage(this.caster.atk * HeavensJudgement.dmgTable["lvl-1"]);

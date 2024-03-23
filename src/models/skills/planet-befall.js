@@ -14,6 +14,7 @@ export default class PlanetBefall {
         this.name = PlanetBefall.name;
         this.icon = PlanetBefall.icon;
         this.level = 1;
+        this.description = "Summons a meteor dealing big AoE damage.";
     }
 
     static get name() {
@@ -78,6 +79,7 @@ export default class PlanetBefall {
             callback: () => {
                 this.scene.physics.add.collider(rock2Sprite, this.caster.target, (rock2Sprite, target) => {
                     target.takeDamage(this.caster.atk * PlanetBefall.dmgTable["lvl-1"]);
+                    this.scene.sound.play("explosion", { detune: 100 });
                 });
             },
         });

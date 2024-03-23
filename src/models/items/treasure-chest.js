@@ -30,7 +30,7 @@ export default class TreasureChest extends Phaser.Physics.Arcade.Sprite {
         this.isOpened = true;
 
         this.anims.play(`${this.texture.key}-open`);
-        this.scene.sound.add("coin").play();
+        this.scene.sound.play("coin");
         this.removeFromUpdateList();
         this.scene.time.addEvent({ delay: 1000, callback: () => this.destroy() });
 

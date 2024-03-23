@@ -36,8 +36,6 @@ export default class Game extends Phaser.Scene {
         this.physics.world.bounds.width = MAP_DIMENSION.x * TILE_SIZE.w;
         this.physics.world.bounds.height = MAP_DIMENSION.y * TILE_SIZE.h;
 
-        this.sound.add("adventure-begin", { loop: true }).play();
-
         // Creating anims
         adventurerAnims(this.anims);
         greenDemonAnims(this.anims);
@@ -51,6 +49,17 @@ export default class Game extends Phaser.Scene {
         skillPlantAnims(this.anims);
         skillRockAnims(this.anims);
         skillRock2Anims(this.anims);
+
+        // Adding sounds
+        this.sound.add("adventure-begin", { loop: true }).play();
+        this.sound.add("coin");
+        this.sound.add("potion");
+        this.sound.add("slash");
+        this.sound.add("kill");
+        this.sound.add("fire");
+        this.sound.add("ice");
+        this.sound.add("lightning");
+        this.sound.add("explosion");
 
         this.adventurer = new Adventurer({
             scene: this,
